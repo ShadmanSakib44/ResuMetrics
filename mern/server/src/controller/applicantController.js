@@ -1,71 +1,3 @@
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
-// const SECRET_KEY = "ResuMetrics";
-
-// const signup = async (req, res) => {
-//   //   console.log(req.body);
-//   const { username, email, password } = req.body;
-//   try {
-//     const existingApplicant = await Applicant.findOne({ email: email });
-
-//     if (existingApplicant) {
-//       return res.status(400).json({ message: "User already exists" });
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     const applicant = new Applicant({
-//       username: username,
-//       password: hashedPassword,
-//       email: email,
-//     });
-
-//     await applicant.save();
-
-//     const token = jwt.sign(
-//       { email: applicant.email, id: applicant._id },
-//       SECRET_KEY
-//     );
-
-//     res.status(201).json({ user: applicant, token: token });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Something went wrong" });
-//   }
-// };
-
-// const login = async (req, res) => {
-//   const { email, password } = req.body;
-//   try {
-//     const existingApplicant = await Applicant.findOne({ email: email });
-
-//     if (!existingApplicant) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     const matchPassword = await bcrypt.compare(
-//       password,
-//       existingApplicant.password
-//     );
-
-//     if (!matchPassword) {
-//       return res.status(400).json({ message: "Invalid Credentials" });
-//     }
-
-//     const token = jwt.sign(
-//       { email: existingApplicant.email, id: existingApplicant._id },
-//       SECRET_KEY
-//     );
-
-//     res.status(201).json({ user: existingApplicant, token: token });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Something went wrong" });
-//   }
-// };
-
-// module.exports = { signup, login };
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
@@ -99,29 +31,6 @@ const signup = async (req, res) => {
   }
 };
 
-// const login = (req, res, next) => {
-//   passport.authenticate("local", (err, applicant, info) => {
-//     if (err) {
-//       return res.status(500).json({ message: "Error during login" });
-//     }
-//     if (!applicant) {
-//       return res.status(401).json({ message: info.message });
-//     }
-
-//     req.login(applicant, (err) => {
-//       if (err) {
-//         return res.status(500).json({ message: "Error during login" });
-//       }
-
-//       const token = jwt.sign(
-//         { username: applicant.username },
-//         process.env.JWT_SECRET
-//       );
-//       res.json({ token });
-//     });
-//   })(req, res, next);
-// };
-
 const login = (req, res, next) => {
   const strategyName = "applicant";
 
@@ -130,7 +39,9 @@ const login = (req, res, next) => {
       return res.status(500).json({ message: "Error during login" });
     }
     if (!user) {
-      return res.status(401).json({ message: info.message });
+      const errorMessage = info.message;
+      console.log(errorMessage);
+      return res.status(404).send(errorMessage);
     }
 
     req.login(user, (err) => {
