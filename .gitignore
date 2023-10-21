@@ -128,3 +128,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+assests/JdModel/output/model-best/transformer/model
+assests/JdModel/output/model-last/ner/model
+assests/JdModel/output/model-last/transformer/model
+assests/ResumeModel/output/model-best/ner/model
+assests/ResumeModel/output/model-best/transformer/model
+assests/ResumeModel/output/model-last/transformer/model
