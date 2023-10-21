@@ -1,0 +1,60 @@
+
+body {
+  background-color: #1260cc;
+  font-family: Arial, sans-serif;
+  background-image: url('/static/images/flower1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 40px; /* Increase the padding for a larger container */
+  background-color: #C8E7F5;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(241, 242, 242, 0.92);
+}
+
+form {
+  margin-top: 30px;
+}
+
+p {
+  font-size: 29px;
+  color: #1260cc; /* Text color set to #1260cc */
+  font-family: 'CoolFont', sans-serif; /* Replace 'CoolFont' with the desired font name */
+  font-weight: bold; /* Make the text bold */
+}
+
+input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+input[type="submit"] {
+  background-color: #0671B7;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0e4fba;
+}
+
+p.message {
+  margin-top: 10px;
+  color: #1260cc;
+  font-size: 16px;
+}
