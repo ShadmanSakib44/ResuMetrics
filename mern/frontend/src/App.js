@@ -4,6 +4,7 @@ import ApplicantSignup from './components/ApplicantSignup';
 import ApplicantLogin from './components/ApplicantLogin';
 import OrganizationSignup from './components/OrganizationSignup';
 import OrganizationLogin from './components/OrganizationLogin';
+import './App.css'; // Import the CSS file
 
 function App() {
     const [isApplicantDropdownOpen, setApplicantDropdownOpen] = useState(false);
@@ -11,24 +12,24 @@ function App() {
 
     return (
         <Router>
-            <div style={styles.app}>
-                <nav style={styles.nav}>
-                    <ul style={styles.ul}>
-                        <li style={styles.li} onMouseEnter={() => setApplicantDropdownOpen(true)} onMouseLeave={() => setApplicantDropdownOpen(false)}>
-                            <span style={styles.dropdownTrigger}>Applicant</span>
+            <div className="app"> {/* Use className instead of style */}
+                <nav className="nav"> {/* Use className instead of style */}
+                    <ul className="ul"> {/* Use className instead of style */}
+                        <li className="li" onMouseEnter={() => setApplicantDropdownOpen(true)} onMouseLeave={() => setApplicantDropdownOpen(false)}>
+                            <span className="dropdownTrigger">Applicant</span> {/* Use className instead of style */}
                             {isApplicantDropdownOpen && (
-                                <div style={styles.dropdown}>
-                                    <Link to="/applicant/signup" style={styles.link}>Signup</Link>
-                                    <Link to="/applicant/login" style={styles.link}>Login</Link>
+                                <div className="dropdown"> {/* Use className instead of style */}
+                                    <Link to="/applicant/signup" className="link">Signup</Link> {/* Use className instead of style */}
+                                    <Link to="/applicant/login" className="link">Login</Link> {/* Use className instead of style */}
                                 </div>
                             )}
                         </li>
-                        <li style={styles.li} onMouseEnter={() => setOrganizationDropdownOpen(true)} onMouseLeave={() => setOrganizationDropdownOpen(false)}>
-                            <span style={styles.dropdownTrigger}>Organization</span>
+                        <li className="li" onMouseEnter={() => setOrganizationDropdownOpen(true)} onMouseLeave={() => setOrganizationDropdownOpen(false)}>
+                            <span className="dropdownTrigger">Organization</span> {/* Use className instead of style */}
                             {isOrganizationDropdownOpen && (
-                                <div style={styles.dropdown}>
-                                    <Link to="/organization/signup" style={styles.link}>Signup</Link>
-                                    <Link to="/organization/login" style={styles.link}>Login</Link>
+                                <div className="dropdown"> {/* Use className instead of style */}
+                                    <Link to="/organization/signup" className="link">Signup</Link> {/* Use className instead of style */}
+                                    <Link to="/organization/login" className="link">Login</Link> {/* Use className instead of style */}
                                 </div>
                             )}
                         </li>
@@ -45,52 +46,5 @@ function App() {
         </Router>
     );
 }
-
-const styles = {
-    app: {
-        fontFamily: 'Arial, sans-serif',
-        maxWidth: '960px',
-        margin: '0 auto',
-        padding: '20px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        borderRadius: '5px'
-    },
-    nav: {
-        backgroundColor: '#f5f5f5',
-        padding: '10px 0',
-        borderRadius: '5px',
-        marginBottom: '20px'
-    },
-    ul: {
-        listStyleType: 'none',
-        margin: 0,
-        padding: 0,
-        display: 'flex',
-        justifyContent: 'space-around'
-    },
-    li: {
-        position: 'relative',
-        display: 'inline'
-    },
-    link: {
-        textDecoration: 'none',
-        color: '#333',
-        padding: '10px 15px',
-        borderRadius: '4px',
-        display: 'block',
-        transition: 'background-color 0.2s'
-    },
-    dropdown: {
-        position: 'absolute',
-        backgroundColor: '#f5f5f5',
-        boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-        zIndex: 1,
-        display: 'block',
-        marginTop: '5px'
-    },
-    dropdownTrigger: {
-        cursor: 'pointer'
-    }
-};
 
 export default App;
