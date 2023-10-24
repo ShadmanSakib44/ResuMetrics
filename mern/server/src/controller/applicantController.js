@@ -6,7 +6,7 @@ const Applicant = require("../models/Applicant");
 const signup = async (req, res) => {
   try {
     const { name, password, email } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const existingApplicant = await Applicant.findOne({ email });
 
     if (existingApplicant) {
@@ -49,11 +49,18 @@ const login = (req, res, next) => {
         return res.status(500).json({ message: "Error during login" });
       }
 
+      const newApplicant = {
+        name: user.name,
+        email: user.email,
+      };
+
+      // console.log(newApplicant);
+
       const token = jwt.sign(
         { username: user.username },
         process.env.JWT_SECRET
       );
-      res.json({ token });
+      res.json({ token: newApplicant });
     });
   })(req, res, next);
 };
@@ -61,8 +68,10 @@ const login = (req, res, next) => {
 const logout = (req, res) => {
   req.logout((err) => {
     if (err) {
+      console.log(err);
       return next(err);
     }
+    console.log("Logged out");
     res.status(200).json({ message: "Logged out" });
   });
   // res.json({ message: "Logged out" });
