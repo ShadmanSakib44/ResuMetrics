@@ -37,6 +37,7 @@ function ApplicantSignup() {
       boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.1)",
       maxWidth: "400px",
       margin: "50px auto",
+      background: "#111111"
     },
     input: {
       margin: "10px 0",
@@ -46,7 +47,7 @@ function ApplicantSignup() {
     },
     button: {
       padding: "10px 20px",
-      background: "#007BFF",
+      background: "#333333",
       color: "#fff",
       borderRadius: "5px",
       border: "none",
@@ -55,6 +56,7 @@ function ApplicantSignup() {
     },
     h2: {
       color: "white",
+      fontWeight: "bold"
     },
   };
 
