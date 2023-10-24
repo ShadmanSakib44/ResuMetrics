@@ -28,7 +28,8 @@ function OrganizationSignup() {
             borderRadius: '5px',
             boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.1)',
             maxWidth: '400px',
-            margin: '50px auto'
+            margin: '50px auto',
+            background: '#111111'
         },
         input: {
             margin: '10px 0',
