@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function ApplicantProfile() {
   const styles = {
@@ -44,7 +44,7 @@ function ApplicantProfile() {
     emailElement.textContent = object.email;
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit1 = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get(
@@ -56,6 +56,43 @@ function ApplicantProfile() {
       }
     } catch (error) {
       console.error("Error during logout:", error);
+    }
+  };
+
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+  };
+
+  const handleSubmit2 = async (event) => {
+    event.preventDefault();
+
+    if (!file) {
+      alert("Please select a file first.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("resume", file);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/file/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Handle the response as needed
+      console.log("Upload success:", response.data);
+    } catch (error) {
+      // Handle errors
+      console.error("Upload error:", error);
     }
   };
 
@@ -75,10 +112,16 @@ function ApplicantProfile() {
         </p>
       </div>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit1}>
           <button style={styles.button} type="submit">
             Logout
           </button>
+        </form>
+      </div>
+      <div>
+        <form encType="multipart/form-data" onSubmit={handleSubmit2}>
+          <input type="file" name="resume" onChange={handleFileChange} />
+          <button type="submit">Upload</button>
         </form>
       </div>
     </div>
