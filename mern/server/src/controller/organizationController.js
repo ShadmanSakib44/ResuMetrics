@@ -6,7 +6,7 @@ const Organization = require("../models/Organization");
 const signup = async (req, res) => {
   try {
     const { name, password, email } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const existingOrganization = await Organization.findOne({ email });
 
     if (existingOrganization) {
@@ -18,7 +18,7 @@ const signup = async (req, res) => {
       name,
       password: hashedPassword,
       email,
-      verified: false,
+      verified: true,
     });
     await newOrganization.save();
 
@@ -28,6 +28,7 @@ const signup = async (req, res) => {
     );
     res.json({ token });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Error occurred during signup" });
   }
 };
@@ -37,6 +38,7 @@ const login = (req, res, next) => {
 
   passport.authenticate(strategyName, (err, user, info) => {
     if (err) {
+      console.log(err);
       return res.status(500).json({ message: "Error during login" });
     }
     if (!user) {
@@ -45,6 +47,7 @@ const login = (req, res, next) => {
 
     req.login(user, (err) => {
       if (err) {
+        console.log(err);
         return res.status(500).json({ message: "Error during login" });
       }
 
@@ -52,7 +55,13 @@ const login = (req, res, next) => {
         { username: user.username },
         process.env.JWT_SECRET
       );
-      res.json({ token });
+
+      const newOrganization = {
+        name: user.name,
+        email: user.email,
+      };
+
+      res.json({ token: newOrganization });
     });
   })(req, res, next);
 };
