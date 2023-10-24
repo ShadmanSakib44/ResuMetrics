@@ -29,7 +29,7 @@ app = Flask(__name__)
 app.secret_key = "Resume_screening"
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 GOOGLE_CLIENT_ID = "912767749765-1lc26e72qoar77c23gfru3gqv5rmbjao.apps.googleusercontent.com"
-client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "C:/Users/Oishy/ResumeRankingSystem-main/ResumeRankingSystem-main/client_secret.json") #verify this
+client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json") #verify this
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
@@ -60,7 +60,7 @@ app.register_blueprint(job_post,url_prefix="/HR1")
 print("Loading Resume Parser model...")
 # nlp = spacy.load('nlp = spacy.load('C:\\Users\\shadm\\Downloads\\Compressed\\ResumeRankingSystem-main\\ResumeRankingSystem-main\\assests\\ResumeModel\\output\\model-best')
 # nlp = spacy.load('C:/Users/shadm/Downloads/Compressed/ResumeRankingSystem-main/ResumeRankingSystem-main/assests/ResumeModel/output/model-best')
-nlp = spacy.load('C:/Users/Oishy/ResumeRankingSystem-main/ResumeRankingSystem-main/assests/ResumeModel/output/model-best')
+nlp = spacy.load('assests\ResumeModel\output\model-best')
 
 
 print("Resune Parser model loaded")
