@@ -136,3 +136,7 @@ assests/JdModel/output/model-last/transformer/model
 assests/ResumeModel/output/model-best/ner/model
 assests/ResumeModel/output/model-best/transformer/model
 assests/ResumeModel/output/model-last/transformer/model
+
+VirtualEnv\Lib\site-packages\torch\lib\dnnl.lib
+\VirtualEnv\Lib\site-packages\torch\lib\dnnl.lib
+VirtualEnv
