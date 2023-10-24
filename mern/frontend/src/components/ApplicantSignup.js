@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 function ApplicantSignup() {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+    const [emailValid, setEmailValid] = useState(true);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+
+        if (e.target.name === 'email') {
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            setEmailValid(emailRegex.test(e.target.value));
+        }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!emailValid) {
+            console.error("Invalid email format");
+            return;
+        }
         try {
             const response = await axios.post('http://localhost:8000/applicant/signup', formData);
             console.log(response.data);
@@ -17,6 +28,7 @@ function ApplicantSignup() {
             console.error("Error during signup:", error);
         }
     }
+
 
     const styles = {
         container: {
@@ -53,7 +65,9 @@ function ApplicantSignup() {
             <form onSubmit={handleSubmit}>
                 <input style={styles.input} type="text" name="name" placeholder="Name" onChange={handleChange} required />
                 <input style={styles.input} type="email" name="email" placeholder="Email" onChange={handleChange} required />
+                {!emailValid && <p style={{ color: 'red' }}>Invalid email format</p>}
                 <input style={styles.input} type="password" name="password" placeholder="Password" onChange={handleChange} required />
+                <PasswordStrengthBar password={formData.password} />
                 <button style={styles.button} type="submit">Signup</button>
             </form>
         </div>
