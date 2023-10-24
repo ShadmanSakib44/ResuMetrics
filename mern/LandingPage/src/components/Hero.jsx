@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div className='text-white'>
       <div className='max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
-        <p className='text-[#1260cc] font-bold p-2'>
+        <p className='text-[#989898] font-bold p-2'>
           POWERING YOUR RESUME PROCESS
         </p>
         <h1 className='md:text-7xl sm:text-6xl text-4xl font-bold md:py-6'>
@@ -33,7 +33,7 @@ const Hero = () => {
          
         </div>
         <p className='md:text-2xl text-xl font-bold text-gray-500'>Streamline your resume management to find the best candidates and create outstanding resumes effortlessly.</p>
-        <button className='bg-[#1260cc] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black'>Get Started</button>
+        <button className='bg-[#989898] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black'>Get Started</button>
       </div>
     </div>
   );
