@@ -38,7 +38,7 @@ function OrganizationSignup() {
         },
         button: {
             padding: '10px 20px',
-            background: '#007BFF',
+            background: '#333333',
             color: '#fff',
             borderRadius: '5px',
             border: 'none',
@@ -49,7 +49,7 @@ function OrganizationSignup() {
 
     return (
         <div style={styles.container}>
-            <h2>Organization Signup</h2>
+            <h2 style={{ color: '#fff', fontWeight: 'bold' }}>Organization Signup</h2>
             <form onSubmit={handleSubmit}>
                 <input style={styles.input} type="text" name="username" placeholder="Username" onChange={handleChange} required />
                 <input style={styles.input} type="email" name="email" placeholder="Email" onChange={handleChange} required />
