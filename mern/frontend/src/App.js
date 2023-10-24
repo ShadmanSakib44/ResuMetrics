@@ -1,39 +1,49 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import ApplicantSignup from './components/ApplicantSignup';
 import ApplicantLogin from './components/ApplicantLogin';
 import OrganizationSignup from './components/OrganizationSignup';
 import OrganizationLogin from './components/OrganizationLogin';
 import './App.css'; // Import the CSS file
 
-function App() {
-    const [isApplicantDropdownOpen, setApplicantDropdownOpen] = useState(false);
-    const [isOrganizationDropdownOpen, setOrganizationDropdownOpen] = useState(false);
+function NavigationLinks() {
+    const location = useLocation();
 
+    const isApplicantRoute = location.pathname.includes('applicant');
+    const isOrganizationRoute = location.pathname.includes('organization');
+
+    return (
+        <ul className="ul">
+            {isApplicantRoute && (
+                <>
+                    <li className="li">
+                        <a href="/applicant/signup" className="link">Applicant Signup</a>
+                    </li>
+                    <li className="li">
+                        <a href="/applicant/login" className="link">Applicant Login</a>
+                    </li>
+                </>
+            )}
+            {isOrganizationRoute && (
+                <>
+                    <li className="li">
+                        <a href="/organization/signup" className="link">Organization Signup</a>
+                    </li>
+                    <li className="li">
+                        <a href="/organization/login" className="link">Organization Login</a>
+                    </li>
+                </>
+            )}
+        </ul>
+    );
+}
+
+function App() {
     return (
         <Router>
             <div className="app"> {/* Use className instead of style */}
                 <nav className="nav"> {/* Use className instead of style */}
-                    <ul className="ul"> {/* Use className instead of style */}
-                        <li className="li" onMouseEnter={() => setApplicantDropdownOpen(true)} onMouseLeave={() => setApplicantDropdownOpen(false)}>
-                            <span className="dropdownTrigger">Applicant</span> {/* Use className instead of style */}
-                            {isApplicantDropdownOpen && (
-                                <div className="dropdown"> {/* Use className instead of style */}
-                                    <Link to="/applicant/signup" className="link">Signup</Link> {/* Use className instead of style */}
-                                    <Link to="/applicant/login" className="link">Login</Link> {/* Use className instead of style */}
-                                </div>
-                            )}
-                        </li>
-                        <li className="li" onMouseEnter={() => setOrganizationDropdownOpen(true)} onMouseLeave={() => setOrganizationDropdownOpen(false)}>
-                            <span className="dropdownTrigger">Organization</span> {/* Use className instead of style */}
-                            {isOrganizationDropdownOpen && (
-                                <div className="dropdown"> {/* Use className instead of style */}
-                                    <Link to="/organization/signup" className="link">Signup</Link> {/* Use className instead of style */}
-                                    <Link to="/organization/login" className="link">Login</Link> {/* Use className instead of style */}
-                                </div>
-                            )}
-                        </li>
-                    </ul>
+                    <NavigationLinks />
                 </nav>
 
                 <Routes>
