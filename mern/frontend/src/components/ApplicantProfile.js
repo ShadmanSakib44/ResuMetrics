@@ -77,9 +77,12 @@ function ApplicantProfile() {
     const formData = new FormData();
     formData.append("resume", file);
 
+    const email = document.getElementById("email").textContent;
+    formData.append("email", email);
+
     try {
       const response = await axios.post(
-        "http://localhost:5000/file/upload",
+        "http://localhost:8000/applicant/upload",
         formData,
         {
           headers: {
