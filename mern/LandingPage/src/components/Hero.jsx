@@ -33,7 +33,12 @@ const Hero = () => {
          
         </div>
         <p className='md:text-2xl text-xl font-bold text-gray-500'>Streamline your resume management to find the best candidates and create outstanding resumes effortlessly.</p>
-        <button className='bg-[#989898] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black'>Get Started</button>
+        <a href="http://localhost:3002/" className="block w-[200px] mx-auto my-6">
+    <button className='bg-[#989898] w-full rounded-md font-medium py-3 text-black'>
+      Build Your Resume Now
+    </button>
+</a>
+
       </div>
     </div>
   );
