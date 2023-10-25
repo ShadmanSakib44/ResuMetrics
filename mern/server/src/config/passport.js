@@ -33,6 +33,39 @@ passport.use(
   )
 );
 
+passport.use(
+  "organization",
+  new LocalStrategy(
+    { usernameField: "email" }, // Use "email" as the username field
+    async (email, password, done) => {
+      try {
+        const organization = await Organization.findOne({ email });
+
+        if (!organization) {
+          return done(null, false, { message: "Email not found." });
+        }
+
+        if (!organization.verified) {
+          return done(null, false, { message: "Organization not verified." });
+        }
+
+        const passwordMatch = await bcrypt.compare(
+          password,
+          organization.password
+        );
+
+        if (!passwordMatch) {
+          return done(null, false, { message: "Incorrect password." });
+        }
+
+        return done(null, organization);
+      } catch (error) {
+        return done(error);
+      }
+    }
+  )
+);
+
 passport.serializeUser((user, done) => {
   done(null, user._id);
 });

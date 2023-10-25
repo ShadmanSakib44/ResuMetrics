@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-function ApplicantProfile() {
+function OrganizationProfile() {
   const styles = {
     container: {
       display: "flex",
@@ -35,8 +35,10 @@ function ApplicantProfile() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("applicant_token");
+    const token = localStorage.getItem("orgToken");
     const object = JSON.parse(token);
+    console.log(object.name);
+    console.log(object.email);
     const nameElement = document.getElementById("name");
     const emailElement = document.getElementById("email");
 
@@ -44,62 +46,25 @@ function ApplicantProfile() {
     emailElement.textContent = object.email;
   });
 
-  const handleSubmit1 = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        "http://localhost:8000/applicant/logout"
+        "http://localhost:8000/organization/logout"
       );
       if (response.status === 200) {
         localStorage.clear();
-        window.location = "/applicant/login";
+        window.location = "/organization/login";
       }
     } catch (error) {
       console.error("Error during logout:", error);
     }
   };
 
-  const [file, setFile] = useState(null);
-
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
-  };
-
-  const handleSubmit2 = async (event) => {
-    event.preventDefault();
-
-    if (!file) {
-      alert("Please select a file first.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("resume", file);
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/file/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      // Handle the response as needed
-      console.log("Upload success:", response.data);
-    } catch (error) {
-      // Handle errors
-      console.error("Upload error:", error);
-    }
-  };
-
   return (
     <div style={styles.container}>
       <div>
-        <h2 style={styles.h2}>Applicant Information</h2>
+        <h2 style={styles.h2}>Organization Information</h2>
       </div>
       <div>
         <p style={styles.h2}>
@@ -112,20 +77,14 @@ function ApplicantProfile() {
         </p>
       </div>
       <div>
-        <form onSubmit={handleSubmit1}>
+        <form onSubmit={handleSubmit}>
           <button style={styles.button} type="submit">
             Logout
           </button>
-        </form>
-      </div>
-      <div>
-        <form encType="multipart/form-data" onSubmit={handleSubmit2}>
-          <input type="file" name="resume" onChange={handleFileChange} />
-          <button type="submit">Upload</button>
         </form>
       </div>
     </div>
   );
 }
 
-export default ApplicantProfile;
+export default OrganizationProfile;
