@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const OrganizationSchema = new mongoose.Schema({
-  username: {
+  name: {
     type: String,
     required: true,
   },
@@ -12,6 +12,7 @@ const OrganizationSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   verified: {
     type: Boolean,

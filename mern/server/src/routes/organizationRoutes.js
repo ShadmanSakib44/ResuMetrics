@@ -1,12 +1,19 @@
 const express = require("express");
-const organizationRouter = express.Router();
+const organizationController = require("../controller/organizationController");
+const authMiddleware = require("../middlewares/auth");
 
-userRouter.post("/signup", (req, res) => {
-  res.send("Signup");
-});
+const router = express.Router();
 
-userRouter.post("/login", (req, res) => {
-  res.send("login");
-});
+// userRouter.post("/signup", (req, res) => {
+//   res.send("Signup");
+// });
 
-module.exports = organizationRouter;
+// userRouter.post("/login", (req, res) => {
+//   res.send("login");
+// });
+
+router.post("/signup", organizationController.signup);
+router.post("/login", organizationController.login);
+router.get("/logout", organizationController.logout);
+
+module.exports = router;
