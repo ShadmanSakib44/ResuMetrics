@@ -67,32 +67,50 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user._id);
+  const userRole = user instanceof Applicant ? "applicant" : "organization";
+  done(null, { id: user._id, role: userRole });
 });
 
-passport.deserializeUser((id, done) => {
-  Applicant.findById(id)
-    .then((applicant) => {
-      if (applicant) {
-        return done(null, applicant);
-      }
+passport.deserializeUser((serializedUser, done) => {
+  const { id, role } = serializedUser;
 
-      Organization.findById(id)
-        .then((organization) => {
-          if (organization) {
-            return done(null, organization);
-          } else {
-            // Handle the situation when neither Applicant nor Organization is found
-            return done(new Error("User not found"), null);
-          }
-        })
-        .catch((err) => {
-          done(err, null);
-        });
-    })
-    .catch((err) => {
-      done(err, null);
-    });
+  if (role === "applicant") {
+    Applicant.findById(id)
+      .then((applicant) => {
+        if (applicant) {
+          const newApplicant = {
+            _id: applicant._id,
+            name: applicant.name,
+            email: applicant.email,
+            role: role, // Include the role
+          };
+          return done(null, newApplicant);
+        } else {
+          return done(new Error("User not found"), null);
+        }
+      })
+      .catch((err) => {
+        done(err, null);
+      });
+  } else if (role === "organization") {
+    Organization.findById(id)
+      .then((organization) => {
+        if (organization) {
+          const newOrganization = {
+            _id: organization._id,
+            name: organization.name,
+            email: organization.email,
+            role: role, // Include the role
+          };
+          return done(null, newOrganization);
+        } else {
+          return done(new Error("User not found"), null);
+        }
+      })
+      .catch((err) => {
+        done(err, null);
+      });
+  }
 });
 
 module.exports = passport;

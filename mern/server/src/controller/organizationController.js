@@ -6,7 +6,7 @@ const Organization = require("../models/Organization");
 const signup = async (req, res) => {
   try {
     const { name, password, email } = req.body;
-    // console.log(req.body);
+    console.log(req.body);
     const existingOrganization = await Organization.findOne({ email });
 
     if (existingOrganization) {
@@ -22,13 +22,8 @@ const signup = async (req, res) => {
     });
     await newOrganization.save();
 
-    const token = jwt.sign(
-      { email: newOrganization.email },
-      process.env.JWT_SECRET
-    );
-    res.json({ token });
+    res.status(200);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Error occurred during signup" });
   }
 };
@@ -38,27 +33,22 @@ const login = (req, res, next) => {
 
   passport.authenticate(strategyName, (err, user, info) => {
     if (err) {
-      console.log(err);
       return res.status(500).json({ message: "Error during login" });
     }
     if (!user) {
-      return res.status(404).json({ message: info.message });
+      return res.status(401).json({ message: info.message });
     }
 
     req.login(user, (err) => {
       if (err) {
-        console.log(err);
         return res.status(500).json({ message: "Error during login" });
       }
 
-      const token = jwt.sign(
-        { username: user.username },
-        process.env.JWT_SECRET
-      );
-
       const newOrganization = {
+        _id: user._id,
         name: user.name,
         email: user.email,
+        role: "organization", // Include the role
       };
 
       res.json({ token: newOrganization });
@@ -67,6 +57,7 @@ const login = (req, res, next) => {
 };
 
 const logout = (req, res) => {
+  console.log(req.user);
   req.logout((err) => {
     if (err) {
       return next(err);
