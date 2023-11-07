@@ -1,4 +1,6 @@
+// Navbar.js
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
 const Navbar = () => {
@@ -13,10 +15,10 @@ const Navbar = () => {
       <h1 className='w-full text-3xl font-bold text-white'>ResuMetrics</h1>
       <ul className={`md:flex ${nav ? 'block' : 'hidden'} text-white`}>
         <li className='p-4'>
-          <a href='http://localhost:3000/applicant' className='hover:underline'>Applicant</a>
+          <Link to="/applicant/login" className='hover:underline'>Applicant</Link>
         </li>
         <li className='p-4'>
-          <a href='http://localhost:3000/organization' className='hover:underline'>Organization</a>
+          <Link to="/organization" className='hover:underline'>Organization</Link>
         </li>
       </ul>
       <div onClick={handleNav} className='block md:hidden'>
