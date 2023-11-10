@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#picture file
+C:\Users\Oishy\Documents\GitHub\ResuMetrics\mern\client\src\components\b.svg
