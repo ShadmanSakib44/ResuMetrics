@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PasswordStrengthBar from 'react-password-strength-bar';
+import { useNavigate } from 'react-router-dom';
 
 function ApplicantSignup() {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [emailValid, setEmailValid] = useState(true);
+
+    const navigate = useNavigate();
+
+    const handleSignUpClick = () => {
+      // Redirect to the "applicant/login" page
+      navigate('/applicant/login');
+    };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -52,17 +60,26 @@ function ApplicantSignup() {
             margin: '10px 0',
             padding: '10px 15px',
             borderRadius: '5px',
-            width: '90%'
+            width: '100%'
         },
-        button: {
-            padding: '10px 20px',
-            background: '#333333',
-            color: '#fff',
-            borderRadius: '5px',
-            border: 'none',
-            cursor: 'pointer',
-            marginTop: '20px'
-        },
+        button1: {
+            padding: "10px 20px",
+            background: "linear-gradient(90deg, #55555b, #2d2d34)",
+            color: "#fff",
+            borderRadius: "5px",
+            border: "2px solid #fff",
+            cursor: "pointer",
+            marginTop: "20px",
+          },
+          button2: {
+            padding: "10px 20px",
+            background: "linear-gradient(90deg, #55555b, #2d2d34)",
+            color: "#fff",
+            borderRadius: "5px",
+            border: "2px solid #fff",
+            cursor: "pointer",
+            marginTop: "30px", // Adjust the marginTop value for space between buttons
+          },
         h2: {
             color: 'white',
             fontWeight: 'bold'
@@ -78,7 +95,12 @@ function ApplicantSignup() {
                 {!emailValid && <p style={{ color: 'red' }}>Invalid email format</p>}
                 <input style={styles.input} type="password" name="password" placeholder="Password" onChange={handleChange} required />
                 <PasswordStrengthBar password={formData.password} />
-                <button style={styles.button} type="submit">Signup</button>
+                                <button style={{ ...styles.button1, marginRight: '170px' }} type="submit">
+                Sign Up
+                </button>
+                <button style={styles.button2} type="submit" onClick={handleSignUpClick}>
+                Login
+                </button>
             </form>
         </div>
     );

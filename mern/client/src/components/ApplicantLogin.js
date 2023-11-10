@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function ApplicantLogin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const navigate = useNavigate();
+
+  const handleSignUpClick = () => {
+    // Redirect to the "applicant/signup" page
+    navigate('/applicant/signup');
   };
 
   const handleSubmit = async (e) => {
@@ -29,7 +37,6 @@ function ApplicantLogin() {
       console.error("Error during login:", error);
     }
   };
-
   const styles = {
     container: {
       display: "flex",
@@ -47,7 +54,7 @@ function ApplicantLogin() {
       margin: "10px 0",
       padding: "10px 15px",
       borderRadius: "5px",
-      width: "90%",
+      width: "100%",
     },
     button: {
       padding: "10px 20px",
@@ -58,11 +65,30 @@ function ApplicantLogin() {
       cursor: "pointer",
       marginTop: "20px",
     },
+    button1: {
+      padding: "10px 20px",
+      background: "linear-gradient(90deg, #55555b, #2d2d34)",
+      color: "#fff",
+      borderRadius: "5px",
+      border: "2px solid #fff",
+      cursor: "pointer",
+      marginTop: "20px",
+    },
+    button2: {
+      padding: "10px 20px",
+      background: "linear-gradient(90deg, #55555b, #2d2d34)",
+      color: "#fff",
+      borderRadius: "5px",
+      border: "2px solid #fff",
+      cursor: "pointer",
+      marginTop: "30px", // Adjust the marginTop value for space between buttons
+    },
     h2: {
       color: "white",
       fontWeight: "bold"
     },
   };
+  
 
   return (
     <div style={styles.container}>
@@ -84,9 +110,12 @@ function ApplicantLogin() {
           onChange={handleChange}
           required
         />
-        <button style={styles.button} type="submit">
-          Login
-        </button>
+<button style={{ ...styles.button1, marginRight: '170px' }} type="submit">
+  Login
+</button>
+<button style={styles.button2} type="submit" onClick={handleSignUpClick}>
+      Sign Up
+    </button>
       </form>
     </div>
   );

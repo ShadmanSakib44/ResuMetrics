@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import PasswordStrengthBar from "react-password-strength-bar";
+import { useNavigate } from "react-router-dom";
 
 function OrganizationSignup() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,12 @@ function OrganizationSignup() {
     password: "",
   });
   const [emailValid, setEmailValid] = useState(true);
+  const navigate = useNavigate();
+
+  const handleSignUpClick = () => {
+    // Redirect to the "applicant/login" page
+    navigate('/organization/login');
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,16 +61,25 @@ function OrganizationSignup() {
       margin: "10px 0",
       padding: "10px 15px",
       borderRadius: "5px",
-      width: "90%",
+      width: "100%",
     },
-    button: {
+    button1: {
       padding: "10px 20px",
-      background: "#333333",
+      background: "linear-gradient(90deg, #55555b, #2d2d34)",
       color: "#fff",
       borderRadius: "5px",
-      border: "none",
+      border: "2px solid #fff",
       cursor: "pointer",
       marginTop: "20px",
+    },
+    button2: {
+      padding: "10px 20px",
+      background: "linear-gradient(90deg, #55555b, #2d2d34)",
+      color: "#fff",
+      borderRadius: "5px",
+      border: "2px solid #fff",
+      cursor: "pointer",
+      marginTop: "30px", // Adjust the marginTop value for space between buttons
     },
     error: {
       color: "red",
@@ -101,10 +117,17 @@ function OrganizationSignup() {
           onChange={handleChange}
           required
         />
-        <PasswordStrengthBar password={formData.password} />
+        {/* <PasswordStrengthBar password={formData.password} />
         <button style={styles.button} type="submit">
           Signup
-        </button>
+        </button> */}
+                        <PasswordStrengthBar password={formData.password} />
+                                <button style={{ ...styles.button1, marginRight: '170px' }} type="submit">
+                Sign Up
+                </button>
+                <button style={styles.button2} type="submit" onClick={handleSignUpClick}>
+                Login
+                </button>
       </form>
     </div>
   );

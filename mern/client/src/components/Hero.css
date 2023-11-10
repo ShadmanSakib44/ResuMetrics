@@ -1,0 +1,41 @@
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%; /* Ensures it's at the bottom */
+    padding: 3rem;
+  }
+  
+  .custom-button {
+    background: linear-gradient(90deg, #55555b, #2d2d34); /* Gradient from #000066 to #6699f */
+    border: 2px solid white; /* White border */
+     border-radius: 20%; /* Makes the button round (circular) */
+    /* width: 100px; 
+    height: 100px;  */ 
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(219, 91, 91, 0.1); /* Add shadows */
+  }
+  
+  .chat-icon {
+    margin-right: 10px; /* Space between icon and text */
+    stroke: white; /* Icon color */
+    width: 20px; /* Adjust size as needed */
+    height: 20px;
+  }
+
+  .button:hover {
+    transform: scale(1.05); /* Scale the button up a bit on hover */
+  }
+  
+  .bg-image {
+    /* Other existing styles... */
+    background: url('./b.svg') center/cover no-repeat;
+  }

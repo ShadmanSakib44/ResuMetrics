@@ -1,5 +1,6 @@
 import React from 'react';
 import Typed from 'react-typed';
+import './Hero.css';
 
 const Hero = () => {
   const redirectToTarget = () => {
@@ -7,7 +8,9 @@ const Hero = () => {
     window.location.href = 'http://localhost:3002';
   };
 
+
   return (
+    <div className='bg-image'>
     <div className='text-white'>
       <div className='max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
         <p className='text-[#989898] font-bold p-2'>
@@ -35,15 +38,38 @@ const Hero = () => {
         <p className='md:text-2xl text-xl font-bold text-gray-500'>
           Streamline your resume management to find the best candidates and create outstanding resumes effortlessly.
         </p>
-        <button
+        {/* <button
           className='bg-[#989898] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black'
           onClick={redirectToTarget}
         >
           Build Resume
+        </button> */}
+    <div className='button-container'>
+        <button className='custom-button' onClick={redirectToTarget}>
+          <span className='chat-icon'>
+            <svg
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              ></path>
+            </svg>
+          </span>
+          Build Resume
         </button>
       </div>
+      </div>
+      
+    </div>
     </div>
   );
 };
 
 export default Hero;
+
