@@ -13,36 +13,39 @@ function ApplicantProfile() {
       boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.1)",
       maxWidth: "400px",
       margin: "50px auto",
+      background: "#111111",
     },
-    input: {
+    text: {
+      color: "#fff",
       margin: "10px 0",
-      padding: "10px 15px",
-      borderRadius: "5px",
-      width: "90%",
     },
-    button: {
+    button2: {
       padding: "10px 20px",
-      background: "#007BFF",
+      background: "linear-gradient(90deg, #55555b, #2d2d34)",
       color: "#fff",
       borderRadius: "5px",
-      border: "none",
+      border: "2px solid #fff",
       cursor: "pointer",
       marginTop: "20px",
     },
-    h2: {
-      color: "white",
-    },
   };
+
+  const [userData, setUserData] = useState({ name: "", email: "" });
 
   useEffect(() => {
     const token = localStorage.getItem("applicant_token");
-    const object = JSON.parse(token);
-    const nameElement = document.getElementById("name");
-    const emailElement = document.getElementById("email");
 
-    nameElement.textContent = object.name;
-    emailElement.textContent = object.email;
-  });
+    if (token) {
+      const object = JSON.parse(token);
+      console.log(object.name);
+      console.log(object.email);
+
+      setUserData({
+        name: object.name,
+        email: object.email,
+      });
+    }
+  }, []);
 
   const handleSubmit1 = async (e) => {
     e.preventDefault();
@@ -102,21 +105,15 @@ function ApplicantProfile() {
   return (
     <div style={styles.container}>
       <div>
-        <h2 style={styles.h2}>Applicant Information</h2>
+        <h2 style={styles.text}>Applicant Information</h2>
       </div>
       <div>
-        <p style={styles.h2}>
-          Name: <span id="name"></span>
-        </p>
-      </div>
-      <div>
-        <p style={styles.h2}>
-          Email: <span id="email"></span>
-        </p>
+        <p style={styles.text}>Name: {userData.name}</p>
+        <p style={styles.text}>Email: {userData.email}</p>
       </div>
       <div>
         <form onSubmit={handleSubmit1}>
-          <button style={styles.button} type="submit">
+          <button style={styles.button2} type="submit">
             Logout
           </button>
         </form>
@@ -124,7 +121,9 @@ function ApplicantProfile() {
       <div>
         <form encType="multipart/form-data" onSubmit={handleSubmit2}>
           <input type="file" name="resume" onChange={handleFileChange} />
-          <button type="submit">Upload</button>
+          <button style={styles.button2} type="submit">
+            Upload
+          </button>
         </form>
       </div>
     </div>
