@@ -7,6 +7,7 @@ const expressSession = require("express-session");
 const passport = require("passport");
 const applicantRoutes = require("./routes/applicantRoutes");
 const organizationRoutes = require("./routes/organizationRoutes");
+const jobRoutes = require("./routes/jobRoutes");
 
 // Load environment variables from .env
 dotenv.config();
@@ -46,6 +47,7 @@ require("./config/passport");
 // Routes
 app.use("/applicant", applicantRoutes);
 app.use("/organization", organizationRoutes);
+app.use("/job", jobRoutes);
 
 // Start the server
 app.listen(port, () => {
