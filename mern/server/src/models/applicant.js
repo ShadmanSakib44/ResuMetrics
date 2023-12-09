@@ -14,6 +14,11 @@ const ApplicantSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  
+  applications: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "ApplyJob",
+  }],
 });
 
 const Applicant = mongoose.model("Applicant", ApplicantSchema);

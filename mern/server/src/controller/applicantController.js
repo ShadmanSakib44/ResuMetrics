@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const path = require("path");
-const Applicant = require("../models/Applicant");
+const Applicant = require("../models/applicant");
 const Resume = require("../models/resume");
 
 const signup = async (req, res) => {
@@ -92,5 +92,8 @@ const fileUpload = async (req, res) => {
     console.log(error);
   }
 };
+
+
+
 
 module.exports = { signup, login, logout, fileUpload };

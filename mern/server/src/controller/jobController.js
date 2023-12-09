@@ -1,5 +1,7 @@
 // jobController.js
 const Job = require("../models/job");
+const JobApplication = require("../models/jobApplication");
+
 
 const postJob = async (req, res) => {
   try {
@@ -38,6 +40,23 @@ const postJob = async (req, res) => {
   }
 };
 
+const getJobApplications = async (req, res) => {
+  try {
+    const { jobId } = req.params;
+
+    // Find all job applications for the given job ID
+    const applications = await JobApplication.find({ jobId });
+
+    // You can send the list of applications as a response
+    res.status(200).json({ applications });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error occurred while retrieving job applications" });
+  }
+};
+
+
 module.exports = {
   postJob,
+  getJobApplications,
 };
