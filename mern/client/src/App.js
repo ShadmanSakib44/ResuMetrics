@@ -12,6 +12,7 @@ import OrganizationProfile from "./components/OrganizationProfile";
 import JobPosting from "./components/JobPosting";
 
 import "./App.css"; // Import the CSS file
+import AllJobs from "./components/AllJobs";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           <Route path="/organization/signup" element={<OrganizationSignup />} />
           <Route path="/organization/login" element={<OrganizationLogin />} />
           <Route path="/organization/jobpost" element={<JobPosting />} />
+          <Route path="/jobs" element={<AllJobs />} />
+          
           
           <Route
             path="/organization/profile"
