@@ -2,43 +2,19 @@ const mongoose = require("mongoose");
 
 let schema = new mongoose.Schema(
   {
-    userId: {
+    category: {
+      type: String,
+      enum: ["job", "applicant"],
+      required: true,
+    },
+    receiverId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
-    name: {
-      type: String,
+    senderId: {
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
-    education: [
-      {
-        institutionName: {
-          type: String,
-          required: true,
-        },
-        startYear: {
-          type: Number,
-          min: 1930,
-          max: new Date().getFullYear(),
-          required: true,
-          validate: Number.isInteger,
-        },
-        endYear: {
-          type: Number,
-          max: 2030,
-          validate: [
-            { validator: Number.isInteger, msg: "Year should be an integer" },
-            {
-              validator: function (value) {
-                return this.startYear <= value;
-              },
-              msg: "End year should be greater than or equal to Start year",
-            },
-          ],
-        },
-      },
-    ],
-    skills: [String],
     rating: {
       type: Number,
       max: 5.0,
@@ -50,14 +26,12 @@ let schema = new mongoose.Schema(
         msg: "Invalid rating",
       },
     },
-    resume: {
-      type: String,
-    },
-    profile: {
-      type: String,
-    },
   },
+  //Collation allows users to specify language-specific rules for string comparison, 
+  //such as rules for lettercase and accent marks.
   { collation: { locale: "en" } }
 );
 
-module.exports = mongoose.model("JobApplicantInfo", schema);
+schema.index({ category: 1, receiverId: 1, senderId: 1 }, { unique: true });
+
+module.exports = mongoose.model("ratings", schema);

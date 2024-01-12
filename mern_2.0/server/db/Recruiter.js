@@ -2,36 +2,28 @@ const mongoose = require("mongoose");
 
 let schema = new mongoose.Schema(
   {
-    category: {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+    name: {
       type: String,
-      enum: ["job", "applicant"],
       required: true,
     },
-    receiverId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-    },
-    senderId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      max: 5.0,
-      default: -1.0,
+    contactNumber: {
+      type: String,
       validate: {
         validator: function (v) {
-          return v >= -1.0 && v <= 5.0;
+          return v !== "" ? /\+\d{1,3}\d{10}/.test(v) : true;
         },
-        msg: "Invalid rating",
+        msg: "Phone number is invalid!",
       },
     },
+    bio: {
+      type: String,
+    },
   },
-  //Collation allows users to specify language-specific rules for string comparison, 
-  //such as rules for lettercase and accent marks.
   { collation: { locale: "en" } }
 );
 
-schema.index({ category: 1, receiverId: 1, senderId: 1 }, { unique: true });
-
-module.exports = mongoose.model("ratings", schema);
+module.exports = mongoose.model("RecruiterInfo", schema);
