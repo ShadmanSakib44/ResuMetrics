@@ -1,7 +1,6 @@
-import { useState, useContext } from "react";
-import {Grid,TextField,Button,Typography,makeStyles,Paper,MenuItem,Input,} from "@material-ui/core";
+import React, { useState, useContext } from "react";
+import { Grid, TextField, Button, Typography, makeStyles, Paper, MenuItem } from "@material-ui/core";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 import ChipInput from "material-ui-chip-input";
 import DescriptionIcon from "@material-ui/icons/Description";
 import FaceIcon from "@material-ui/icons/Face";
@@ -12,6 +11,7 @@ import PasswordInput from "../lib/PasswordInput";
 import EmailInput from "../lib/EmailInput";
 import FileUploadInput from "../lib/FileUploadInput";
 import { SetPopupContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 import apiList from "../lib/apiList";
 import isAuth from "../lib/isAuth";
@@ -108,6 +108,7 @@ const MultifieldInput = (props) => {
 const Signup = (props) => {
   const classes = useStyles();
   const setPopup = useContext(SetPopupContext);
+  const navigate = useNavigate();
 
   const [loggedin, setLoggedin] = useState(isAuth());
 
@@ -189,8 +190,6 @@ const Signup = (props) => {
       }
     });
 
-    console.log(education);
-
     let updatedDetails = {
       ...signupDetails,
       education: education
@@ -221,7 +220,9 @@ const Signup = (props) => {
             severity: "success",
             message: "Logged in successfully",
           });
-          console.log(response);
+          
+          // Use navigate to redirect
+          navigate("/");
         })
         .catch((err) => {
           setPopup({
@@ -229,7 +230,6 @@ const Signup = (props) => {
             severity: "error",
             message: err.response.data.message,
           });
-          console.log(err.response);
         });
     } else {
       setInputErrorHandler(tmpErrorHandler);
@@ -277,8 +277,6 @@ const Signup = (props) => {
       return tmpErrorHandler[obj].error;
     });
 
-    console.log(updatedDetails);
-
     if (verified) {
       axios
         .post(apiList.signup, updatedDetails)
@@ -291,7 +289,9 @@ const Signup = (props) => {
             severity: "success",
             message: "Logged in successfully",
           });
-          console.log(response);
+          
+          // Use navigate to redirect
+          navigate("/");
         })
         .catch((err) => {
           setPopup({
@@ -299,7 +299,6 @@ const Signup = (props) => {
             severity: "error",
             message: err.response.data.message,
           });
-          console.log(err.response);
         });
     } else {
       setInputErrorHandler(tmpErrorHandler);
@@ -312,7 +311,8 @@ const Signup = (props) => {
   };
 
   return loggedin ? (
-    <Redirect to="/" />
+    // Use navigate to redirect
+    navigate("/")
   ) : (
     <Paper elevation={3} className={classes.body}>
       <Grid container direction="column" spacing={4} alignItems="center">
@@ -404,13 +404,6 @@ const Signup = (props) => {
                 className={classes.inputBox}
                 label="Resume (Images only)"
                 icon={<DescriptionIcon />}
-                // value={files.resume}
-                // onChange={(event) =>
-                //   setFiles({
-                //     ...files,
-                //     resume: event.target.files[0],
-                //   })
-                // }
                 uploadTo={apiList.uploadResume}
                 handleInput={handleInput}
                 identifier={"resume"}
@@ -421,13 +414,6 @@ const Signup = (props) => {
                 className={classes.inputBox}
                 label="Profile Photo (.jpg/.png)"
                 icon={<FaceIcon />}
-                // value={files.profileImage}
-                // onChange={(event) =>
-                //   setFiles({
-                //     ...files,
-                //     profileImage: event.target.files[0],
-                //   })
-                // }
                 uploadTo={apiList.uploadProfileImage}
                 handleInput={handleInput}
                 identifier={"profile"}
@@ -447,7 +433,7 @@ const Signup = (props) => {
                 onChange={(event) => {
                   if (
                     event.target.value.split(" ").filter(function (n) {
-                      return n != "";
+                      return n !== "";
                     }).length <= 250
                   ) {
                     handleInput("bio", event.target.value);
@@ -487,4 +473,3 @@ const Signup = (props) => {
 };
 
 export default Signup;
-

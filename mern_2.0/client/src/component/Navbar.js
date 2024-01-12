@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   AppBar, Toolbar, Typography, Button, makeStyles
-} from "@material-ui/core";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+} from "@material-ui/core"; // Import useNavigate
 
 import isAuth, { userType } from "../lib/isAuth";
 
