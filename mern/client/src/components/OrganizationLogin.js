@@ -55,6 +55,12 @@ function OrganizationLogin() {
       borderRadius: "5px",
       width: "100%",
     },
+    buttonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      marginTop: "20px",
+    },
     button1: {
       padding: "10px 20px",
       background: "linear-gradient(90deg, #55555b, #2d2d34)",
@@ -62,16 +68,18 @@ function OrganizationLogin() {
       borderRadius: "5px",
       border: "2px solid #fff",
       cursor: "pointer",
-      marginTop: "20px",
+      marginBottom: "10px",
     },
-    button2: {
-      padding: "10px 20px",
-      background: "linear-gradient(90deg, #55555b, #2d2d34)",
+    h2: {
+      color: "white",
+      fontWeight: "bold"
+    },
+    link: {
       color: "#fff",
-      borderRadius: "5px",
-      border: "2px solid #fff",
+      textDecoration: "underline",
       cursor: "pointer",
-      marginTop: "30px", // Adjust the marginTop value for space between buttons
+      marginTop: "10px",
+      display: "inline-block",
     },
   };
 
@@ -95,12 +103,14 @@ function OrganizationLogin() {
           onChange={handleChange}
           required
         />
-<button style={{ ...styles.button1, marginRight: '171px' }} type="submit">
-  Login
-</button>
-<button style={styles.button2} type="submit" onClick={handleSignUpClick}>
-      Sign Up
-    </button>
+      <div style={styles.buttonContainer}>
+        <button style={styles.button1} type="submit">
+          Login
+        </button>
+        <span style={{ ...styles.link, textDecoration: "none" }}>
+          Don't have an account? <span style={{ textDecoration: "underline" }}  onClick={handleSignUpClick}>Signup</span>
+        </span>
+        </div>
       </form>
     </div>
   );

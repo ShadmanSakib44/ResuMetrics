@@ -9,7 +9,7 @@ function ApplicantSignup() {
 
     const navigate = useNavigate();
 
-    const handleSignUpClick = () => {
+    const handleSignInClick = () => {
       // Redirect to the "applicant/login" page
       navigate('/applicant/login');
     };
@@ -62,28 +62,32 @@ function ApplicantSignup() {
             borderRadius: '5px',
             width: '100%'
         },
-        button1: {
-            padding: "10px 20px",
-            background: "linear-gradient(90deg, #55555b, #2d2d34)",
-            color: "#fff",
-            borderRadius: "5px",
-            border: "2px solid #fff",
-            cursor: "pointer",
+        buttonContainer: {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             marginTop: "20px",
           },
-          button2: {
+          button1: {
             padding: "10px 20px",
             background: "linear-gradient(90deg, #55555b, #2d2d34)",
             color: "#fff",
             borderRadius: "5px",
             border: "2px solid #fff",
             cursor: "pointer",
-            marginTop: "30px", // Adjust the marginTop value for space between buttons
+            marginBottom: "10px",
           },
-        h2: {
-            color: 'white',
-            fontWeight: 'bold'
-        }
+          h2: {
+            color: "white",
+            fontWeight: "bold"
+          },
+          link: {
+            color: "#fff",
+            textDecoration: "underline",
+            cursor: "pointer",
+            marginTop: "10px",
+            display: "inline-block",
+          },
     }
 
     return (
@@ -95,12 +99,14 @@ function ApplicantSignup() {
                 {!emailValid && <p style={{ color: 'red' }}>Invalid email format</p>}
                 <input style={styles.input} type="password" name="password" placeholder="Password" onChange={handleChange} required />
                 <PasswordStrengthBar password={formData.password} />
-                                <button style={{ ...styles.button1, marginRight: '170px' }} type="submit">
-                Sign Up
-                </button>
-                <button style={styles.button2} type="submit" onClick={handleSignUpClick}>
-                Login
-                </button>
+                <div style={styles.buttonContainer}>
+        <button style={styles.button1} type="submit">
+          Login
+        </button>
+        <span style={{ ...styles.link, textDecoration: "none" }}>
+          Already have an account? <span style={{ textDecoration: "underline" }}  onClick={handleSignInClick}>Sign in</span>
+        </span>
+        </div>
             </form>
         </div>
     );
