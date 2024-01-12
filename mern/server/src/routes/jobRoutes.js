@@ -6,7 +6,7 @@ const authMiddleware = require("../middlewares/auth");
 
 const router = express.Router();
 
-router.post("/post", jobController.postJob);
+router.post("/post",jobController.postJob);
 router.post("/:jobId/apply", authMiddleware, jobApplicationController.applyForJob);
 
 router.get("/:jobId/applications", authMiddleware, jobController.getJobApplications);

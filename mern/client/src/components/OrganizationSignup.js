@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +10,12 @@ function OrganizationSignup() {
     password: "",
   });
   const [emailValid, setEmailValid] = useState(true);
+  const [signupMessage, setSignupMessage] = useState("");//for pop-up
+  
+  const [showPopup, setShowPopup] = useState(false);//for pop-up
   const navigate = useNavigate();
 
-  const handleSignUpClick = () => {
+  const handleSignInClick = () => {
     // Redirect to the "applicant/login" page
     navigate('/organization/login');
   };
@@ -35,14 +38,25 @@ function OrganizationSignup() {
     try {
       const response = await axios.post(
         "http://localhost:8000/organization/signup",
-        formData
+        formData,
+        setSignupMessage("Signup successful! You can now log in.")
       );
+      setSignupMessage("Signup successful! You can now log in.");
+      setShowPopup(true);
       console.log(response.data);
-      window.location = "/organization/login";
+      //window.location = "/organization/login";
     } catch (error) {
       console.error("Error during signup:", error);
+      setSignupMessage("Error occurred during signup");
+      setShowPopup(true);
     }
   };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setSignupMessage("");
+  };
+
 
   const styles = {
     container: {
@@ -63,6 +77,12 @@ function OrganizationSignup() {
       borderRadius: "5px",
       width: "100%",
     },
+    buttonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      marginTop: "20px",
+    },
     button1: {
       padding: "10px 20px",
       background: "linear-gradient(90deg, #55555b, #2d2d34)",
@@ -70,27 +90,62 @@ function OrganizationSignup() {
       borderRadius: "5px",
       border: "2px solid #fff",
       cursor: "pointer",
-      marginTop: "20px",
+      marginBottom: "10px",
     },
-    button2: {
-      padding: "10px 20px",
-      background: "linear-gradient(90deg, #55555b, #2d2d34)",
+    h2: {
+      color: "white",
+      fontWeight: "bold"
+    },
+    link: {
       color: "#fff",
-      borderRadius: "5px",
-      border: "2px solid #fff",
+      textDecoration: "underline",
       cursor: "pointer",
-      marginTop: "30px", // Adjust the marginTop value for space between buttons
+      marginTop: "10px",
+      display: "inline-block",
     },
     error: {
       color: "red",
       fontSize: "12px",
       margin: "5px 0",
     },
+    popup: {
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      padding: "20px",
+      background: "#fff",
+      borderRadius: "5px",
+      boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.1)",
+      zIndex: "1000",
+    },
+    closeButton: {
+      position: "absolute",
+      top: "10px",
+      right: "10px",
+      cursor: "pointer",
+      fontSize: "20px",
+    },
+    tickLogo: {
+      color: "green",
+      fontSize: "24px",
+      marginRight: "10px",
+    },
   };
 
   return (
     <div style={styles.container}>
       <h2 style={{ color: "#fff", fontWeight: "bold" }}>Organization Signup</h2>
+      {signupMessage && (
+        <div style={styles.popup}>
+          <span style={styles.closeButton} onClick={closePopup}>
+            &#10006;
+          </span><p>
+            <span style={styles.tickLogo}>&#10003;</span>
+            {signupMessage}
+          </p>
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <input
           style={styles.input}
@@ -122,12 +177,14 @@ function OrganizationSignup() {
           Signup
         </button> */}
                         <PasswordStrengthBar password={formData.password} />
-                                <button style={{ ...styles.button1, marginRight: '170px' }} type="submit">
-                Sign Up
-                </button>
-                <button style={styles.button2} type="submit" onClick={handleSignUpClick}>
-                Login
-                </button>
+                        <div style={styles.buttonContainer}>
+        <button style={styles.button1} type="submit">
+          Signup
+        </button>
+        <span style={{ ...styles.link, textDecoration: "none" }}>
+          Already have an account? <span style={{ textDecoration: "underline" }}  onClick={handleSignInClick}>Sign in</span>
+        </span>
+        </div>
       </form>
     </div>
   );

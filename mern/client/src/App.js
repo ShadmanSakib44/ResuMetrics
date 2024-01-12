@@ -9,6 +9,7 @@ import ApplicantProfile from "./components/ApplicantProfile";
 import OrganizationSignup from "./components/OrganizationSignup";
 import OrganizationLogin from "./components/OrganizationLogin";
 import OrganizationProfile from "./components/OrganizationProfile";
+import JobPosting from "./components/JobPosting";
 
 import "./App.css"; // Import the CSS file
 
@@ -24,6 +25,8 @@ function App() {
           <Route path="/applicant/profile" element={<ApplicantProfile />} />
           <Route path="/organization/signup" element={<OrganizationSignup />} />
           <Route path="/organization/login" element={<OrganizationLogin />} />
+          <Route path="/organization/jobpost" element={<JobPosting />} />
+          
           <Route
             path="/organization/profile"
             element={<OrganizationProfile />}

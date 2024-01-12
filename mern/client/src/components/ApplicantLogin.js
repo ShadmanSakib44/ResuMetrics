@@ -56,13 +56,10 @@ function ApplicantLogin() {
       borderRadius: "5px",
       width: "100%",
     },
-    button: {
-      padding: "10px 20px",
-      background: "#333333",
-      color: "#fff",
-      borderRadius: "5px",
-      border: "none",
-      cursor: "pointer",
+    buttonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       marginTop: "20px",
     },
     button1: {
@@ -72,20 +69,18 @@ function ApplicantLogin() {
       borderRadius: "5px",
       border: "2px solid #fff",
       cursor: "pointer",
-      marginTop: "20px",
-    },
-    button2: {
-      padding: "10px 20px",
-      background: "linear-gradient(90deg, #55555b, #2d2d34)",
-      color: "#fff",
-      borderRadius: "5px",
-      border: "2px solid #fff",
-      cursor: "pointer",
-      marginTop: "30px", // Adjust the marginTop value for space between buttons
+      marginBottom: "10px",
     },
     h2: {
       color: "white",
       fontWeight: "bold"
+    },
+    link: {
+      color: "#fff",
+      textDecoration: "underline",
+      cursor: "pointer",
+      marginTop: "10px",
+      display: "inline-block",
     },
   };
   
@@ -110,12 +105,14 @@ function ApplicantLogin() {
           onChange={handleChange}
           required
         />
-<button style={{ ...styles.button1, marginRight: '170px' }} type="submit">
-  Login
-</button>
-<button style={styles.button2} type="submit" onClick={handleSignUpClick}>
-      Sign Up
-    </button>
+      <div style={styles.buttonContainer}>
+        <button style={styles.button1} type="submit">
+          Login
+        </button>
+        <span style={{ ...styles.link, textDecoration: "none" }}>
+          Don't have an account? <span style={{ textDecoration: "underline" }}  onClick={handleSignUpClick}>Signup</span>
+        </span>
+        </div>
       </form>
     </div>
   );
