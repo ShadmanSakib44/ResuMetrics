@@ -1,37 +1,92 @@
+
+import React, { useEffect, useRef, useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
-import video from './video.mp4';
+import video1 from './video1.mp4';
+import "./Welcome.css"; // Import a separate CSS file for styling
 
 const Welcome = (props) => {
+  const videos = [video1];
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+    }, 8000); // Adjust the delay (in milliseconds) as needed
+
+    return () => clearInterval(interval);
+  }, [currentVideoIndex, videos.length]);
+
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  };
+
   return (
     <Grid container item direction="column" alignItems="center" justify="center">
-      
-      <video className='videoTag' autoPlay loop muted 
-        style={{minWidth: "100%",minHeight: "100vh",maxWidth: "100%",maxHeight: "100vh",objectFit: "cover",
-          zIndex: "-1", boxSizing:"border-box",backgroundColor: "rgba(35,45,57,0.8)"}}>
-          <source src={video} type='video/mp4' />
-      </video>
-        <div class="caption header-text"
-          style={{ position: "absolute",top: "0",left: "0", bottom: "7px",width: "100%"
-            }}>
-
-              <div style={{textAlign: "center",position: "absolute",width: "60%",left: "50%",top: "50%",
-                            transform: "translate(-50%,-50%)",background:"rgba(255,255,255,0.5)"}}>
-                <Grid item >
-                  <Typography variant="h6" style={{marginTop: "0px",fontSize: "18px",
-                      textTransform: "uppercase",fontWeight: "800",color: "#3f51b5",
-                      letterSpacing: "0.5px"}}>FACING DIFFICULTIES IN FINDING SUITABLE JOB </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="h2" 
-                  style={{marginTop: "30px",marginBottom:"25px",textTransform: "uppercase",
-                  fontWeight: "800",color: "#3f51b5",letterSpacing: "1px"}}>
-                    FIND THE PERFECT <em style={{fontStyle: "normal",color: "#ed563b",fontWeight: "900"}}>JOB</em>
-                  </Typography>
-                </Grid>
-              </div>
-              
-        </div>
-    
+      <div className="caption header-text">
+        {videos.map((videoSrc, index) => (
+          <video
+            key={videoSrc}
+            className={`videoTag ${index === currentVideoIndex ? 'active' : ''}`}
+            autoPlay
+            loop
+            muted
+            onEnded={handleVideoEnd}
+            style={{
+              minWidth: "100%",
+              minHeight: "100vh",
+              maxWidth: "100%",
+              maxHeight: "100vh",
+              objectFit: "cover",
+              zIndex: "-1",
+              boxSizing: "border-box",
+            }}
+            ref={videoRef}
+          >
+            <source src={videoSrc} type='video/mp4' />
+          </video>
+        ))}
+        {/* <div className="text-overlay">
+          <Typography variant="h6">
+            A smart solution to Resume related problems
+          </Typography>
+          <Typography variant="h2">
+            FIND THE PERFECT <em>JOB</em>
+          </Typography>
+        </div> */}
+         <div className="text-overlay">
+      <Typography variant="h6" style={{
+        fontSize: "18px",
+        fontWeight: "800",
+        color: "#4f6f52",
+        marginBottom: "10px"
+      }}>
+        A smart solution to Resume related problems
+      </Typography>
+      <Typography variant="h2" style={{
+        fontSize: "36px",
+        fontWeight: "800",
+        color: "#4f6f52",
+        letterSpacing: "1px"
+      }}>
+        A Platform for Handling <em style={{ fontStyle: "normal", color: "#ed563b", fontWeight: "500" }}>JOBs and Applicants</em>
+      </Typography>
+      <Typography variant="body1" style={{
+        fontSize: "16px",
+        color: "black",
+        marginTop: "20px"
+      }}>
+        Unlock your career potential with our innovative resume solutions.
+      </Typography>
+      <Typography variant="body1" style={{
+        fontSize: "16px",
+        color: "black",
+        marginTop: "10px"
+      }}>
+        Stand out from the crowd and land your dream job today!
+      </Typography>
+    </div>
+      </div>
     </Grid>
   );
 };
@@ -43,7 +98,7 @@ export const ErrorPage = (props) => {
       item
       direction="column"
       alignItems="center"
-      justify="center"
+      justify-content="center"
       style={{ padding: "30px", minHeight: "93vh" }}
     >
       <Grid item>

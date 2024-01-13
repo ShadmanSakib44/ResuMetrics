@@ -19,12 +19,32 @@ import isAuth from "../lib/isAuth";
 const useStyles = makeStyles((theme) => ({
   body: {
     padding: "60px 60px",
+    background: "#d2e3c8",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100vh",
   },
   inputBox: {
-    width: "400px",
+    width: "300px",
+    [theme.breakpoints.up("md")]: {
+      width: "400px",
+    },
   },
   submitButton: {
-    width: "400px",
+    width: "300px",
+    borderRadius: "8px",
+    height: "50px",
+    background: "#4f6f52",
+    color: "#ffffff",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    "&:hover": {
+      background: "#385943",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "130px",
+    },
   },
 }));
 
@@ -317,7 +337,7 @@ const Signup = (props) => {
     <Paper elevation={3} className={classes.body}>
       <Grid container direction="column" spacing={4} alignItems="center">
         <Grid item>
-          <Typography variant="h3" component="h2" style={{color:"#3f51b5",fontWeight:"bold"}}>
+          <Typography variant="h3" component="h2" style={{color:"#4f6f52",fontWeight:"bold"}}>
             Sign up
           </Typography>
         </Grid>
