@@ -1,0 +1,49 @@
+.videoTag {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 2s ease-in-out;
+  }
+  
+  .videoTag.active {
+    opacity: 1;
+  }
+  
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #4f6f52; /* Updated text color */
+    background: rgba(244, 249, 240, 0.8); /* Updated background color */
+    padding: 20px;
+    text-align: center; /* Added black border */
+    border-radius: 8px; /* Optional: Add border radius for rounded corners */
+    font-family: 'Arial', sans-serif; /* Updated font family */
+    box-shadow: 0 4px 8px rgba(229, 244, 236, 0.581); /* Added a subtle shadow */
+  }
+  
+  .text-overlay h6 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  
+  .text-overlay h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  
+  .text-overlay p {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .text-overlay em {
+    font-style: normal;
+    color: #ed563b;
+    font-weight: 900;
+  }
+  
