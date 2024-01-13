@@ -1,5 +1,5 @@
 export const server = "http://localhost:8000";
-//export const server = "https://secret-shelf-87665.herokuapp.com";
+
 
 const apiList = {
   login: `${server}/auth/login`,
@@ -9,7 +9,7 @@ const apiList = {
   jobs: `${server}/api/jobs`,
   applications: `${server}/api/applications`,
   rating: `${server}/api/rating`,
-  user: `${server}/api/user`,
+  user: `${server}/user`,
   applicants: `${server}/api/applicants`,
 };
 
