@@ -80,6 +80,7 @@
 // );
 
 // module.exports = passport;
+
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 const passportJWT = require("passport-jwt");
