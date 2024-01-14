@@ -1,8 +1,20 @@
-.videoTag {
+
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .videoTag {
     opacity: 0;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
     transition: opacity 2s ease-in-out;
   }
   
@@ -15,13 +27,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #4f6f52; /* Updated text color */
-    background: rgba(244, 249, 240, 0.8); /* Updated background color */
+    color: #4f6f52;
+    background: rgba(244, 249, 240, 0.8);
     padding: 20px;
-    text-align: center; /* Added black border */
-    border-radius: 8px; /* Optional: Add border radius for rounded corners */
-    font-family: 'Arial', sans-serif; /* Updated font family */
-    box-shadow: 0 4px 8px rgba(229, 244, 236, 0.581); /* Added a subtle shadow */
+    text-align: center;
+    border-radius: 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 8px rgba(229, 244, 236, 0.581);
   }
   
   .text-overlay h6 {
@@ -45,5 +57,27 @@
     font-style: normal;
     color: #ed563b;
     font-weight: 900;
+  }
+  
+  /* Add the new styles for .video-container and .about-section */
+  
+  .about-section {
+    background-color: #d2e3c8;
+    padding: 20px;
+  }
+  
+  .about-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .about-section p {
+    font-size: 30px;
+    color: #4f6f52;
+    text-align: center;
+    
+    border-radius: 20px;
   }
   
