@@ -371,6 +371,35 @@ const updateApplicationStatus = (req, res) => {
 
 };
 
+
+const sendEmailToApplicant = (applicantEmail, applicationStatus) => {
+  const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+          user: process.env.EMAIL_USER, // Use environment variables
+          pass: process.env.EMAIL_PASSWORD, // Use environment variables
+      },
+  });
+
+  const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: applicantEmail,
+      subject: `Application Status Update - ${applicationStatus}`,
+      text: `Dear Applicant,\n\nYour application status has been updated to ${applicationStatus}.\n\nBest regards,\nYour Company`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.error(error);
+      } else {
+          console.log('Email sent: ' + info.response);
+      }
+  });
+};
+
+
+
+
 module.exports = {
     applyForJob,
     getApplicationsForJob,
