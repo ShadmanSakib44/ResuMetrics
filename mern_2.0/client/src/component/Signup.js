@@ -1,5 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Grid, TextField, Button, Typography, makeStyles, Paper, MenuItem } from "@material-ui/core";
+import {
+  Grid,
+  TextField,
+  Button,
+  Typography,
+  makeStyles,
+  Paper,
+  MenuItem,
+} from "@material-ui/core";
 import axios from "axios";
 import ChipInput from "material-ui-chip-input";
 import DescriptionIcon from "@material-ui/icons/Description";
@@ -17,36 +25,67 @@ import apiList from "../lib/apiList";
 import isAuth from "../lib/isAuth";
 
 const useStyles = makeStyles((theme) => ({
+  customFileUploadInput: {
+    backgroundColor: "#4F6F52",
+    color: "white",
+  },
   body: {
-    padding: "60px 60px",
-    background: "#d2e3c8",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100vh",
+    padding: theme.spacing(3), // Responsive padding
+    [theme.breakpoints.up("md")]: {
+      padding: theme.spacing(6), // Larger padding for medium and up screens
+    },
+    backgroundColor: "#D2E3C8", // Set the background color
   },
   inputBox: {
-    width: "300px",
+    width: "100%", // Responsive width
     [theme.breakpoints.up("md")]: {
-      width: "400px",
+      width: "400px", // Width for medium and up screens
     },
   },
   submitButton: {
-    width: "300px",
+    width: "100%", // Responsive width
+    [theme.breakpoints.up("md")]: {
+      width: "400px", // Width for medium and up screens
+    },
+    background: "#3f51b5", // Primary color
+    color: "white", // Text color
     borderRadius: "8px",
     height: "50px",
-    background: "#4f6f52",
-    color: "#ffffff",
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    fontWeight: "bold",
     "&:hover": {
-      background: "#385943",
+      background: "#2c3e50", // Hover color
     },
+  },
+  secondaryButton: {
+    width: "100%", // Responsive width
     [theme.breakpoints.up("md")]: {
-      width: "130px",
+      width: "400px", // Width for medium and up screens
+    },
+    background: "#27ae60", // Secondary color
+    color: "white", // Text color
+    borderRadius: "8px",
+    height: "50px",
+    fontWeight: "bold",
+    "&:hover": {
+      background: "#219951", // Hover color
+    },
+  },
+  dangerButton: {
+    width: "100%", // Responsive width
+    [theme.breakpoints.up("md")]: {
+      width: "400px", // Width for medium and up screens
+    },
+    background: "#e74c3c", // Danger color
+    color: "white", // Text color
+    borderRadius: "8px",
+    height: "50px",
+    fontWeight: "bold",
+    "&:hover": {
+      background: "#c0392b", // Hover color
     },
   },
 }));
+
 
 const MultifieldInput = (props) => {
   const classes = useStyles();
@@ -103,23 +142,24 @@ const MultifieldInput = (props) => {
         </Grid>
       ))}
       <Grid item>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() =>
-            setEducation([
-              ...education,
-              {
-                institutionName: "",
-                startYear: "",
-                endYear: "",
-              },
-            ])
-          }
-          className={classes.inputBox}
-        >
-          Add another institution details
-        </Button>
+      <Button
+  variant="contained"
+  onClick={() =>
+    setEducation([
+      ...education,
+      {
+        institutionName: "",
+        startYear: "",
+        endYear: "",
+      },
+    ])
+  }
+  className={classes.inputBox}
+  style={{ backgroundColor: "#4F6F52", color: "white" }}
+>
+  Add another institution details
+</Button>
+
       </Grid>
     </>
   );
@@ -422,7 +462,7 @@ const Signup = (props) => {
             <Grid item>
               <FileUploadInput
                 className={classes.inputBox}
-                label="Resume (Images only)"
+                label="Resume "
                 icon={<DescriptionIcon />}
                 uploadTo={apiList.uploadResume}
                 handleInput={handleInput}
