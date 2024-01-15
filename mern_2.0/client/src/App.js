@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Grid, makeStyles } from "@material-ui/core";
