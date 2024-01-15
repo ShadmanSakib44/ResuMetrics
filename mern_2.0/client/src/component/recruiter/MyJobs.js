@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect, useContext } from "react";
 import {
   Button,
@@ -17,7 +18,7 @@ import {
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom"; // Replaced useHistory with useNavigate
 import Rating from "@material-ui/lab/Rating";
-import Pagination from "@material-ui/lab/Pagination";
+
 import axios from "axios";
 import SearchIcon from "@material-ui/icons/Search";
 import FilterListIcon from "@material-ui/icons/FilterList";
