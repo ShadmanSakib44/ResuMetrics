@@ -56,6 +56,12 @@ let schema = new mongoose.Schema(
     profile: {
       type: String,
     },
+    email: {
+      type: mongoose.SchemaTypes.Email,
+      unique: true,
+      lowercase: true,
+      required: false,
+    },
   },
   { collation: { locale: "en" } }
 );

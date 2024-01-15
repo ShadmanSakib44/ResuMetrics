@@ -46,6 +46,7 @@ const signup = (req, res) => {
                     rating: data.rating,
                     resume: data.resume,
                     profile: data.profile,
+                    email:data.email,
                   });
 
             userDetails
