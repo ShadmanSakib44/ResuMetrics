@@ -41,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       width: "400px", // Width for medium and up screens
     },
+    '& .MuiButton-root': {
+      backgroundColor: '#4f6f52',
+      color: 'white',
+    },
   },
   submitButton: {
     width: "100%", // Responsive width
@@ -462,7 +466,7 @@ const Signup = (props) => {
             <Grid item>
               <FileUploadInput
                 className={classes.inputBox}
-                label="Resume "
+                label="Resume (.jpg/.pdf)"
                 icon={<DescriptionIcon />}
                 uploadTo={apiList.uploadResume}
                 handleInput={handleInput}
@@ -521,7 +525,15 @@ const Signup = (props) => {
                 : handleLoginRecruiter();
             }}
             className={classes.submitButton}
-            style={{borderRadius:"8px",width:"130px",height:"50px"}}
+            style={{    width: "300px",
+            borderRadius: "8px",
+            height: "50px",
+            background: "#4f6f52", // Set button background color
+            color: "#ffffff", // Set button text color
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add darker background shadow
+            "&:hover": {
+              background: "#385943", // Darker background on hover
+            },}}
           >
             Signup
           </Button>
@@ -529,6 +541,7 @@ const Signup = (props) => {
         </Grid>
       </Grid>
     </Paper>
+    
   );
 };
 

@@ -225,7 +225,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "rgba(210, 227, 200, 0.9)", // Adjusted color and added transparency
+    // backgroundColor: "rgba(210, 227, 200, 0.9)", // Adjusted color and added transparency
     borderRadius: "12px", // Optional: Adjusted border-radius for a rounded look
   },
   heading: {
@@ -249,7 +249,7 @@ const useStyles = makeStyles((theme) => ({
     height: "50px",
     background: "#4f6f52", // Set button background color
     color: "#ffffff", // Set button text color
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add darker background shadow
+    // boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add darker background shadow
     "&:hover": {
       background: "#385943", // Darker background on hover
     },
@@ -347,7 +347,7 @@ const Profile = () => {
       item
       direction="column"
       alignItems="center"
-      style={{ padding: "30px", minHeight: "93vh" }}
+      style={{ padding: "30px", minHeight: "93vh", background:"#d2e3c8" }}
     >
       <Grid item xs={12} style={{ width: "100%" }}>
         <Paper className={classes.paper}>

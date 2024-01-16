@@ -33,16 +33,25 @@ import { userType } from "../lib/isAuth";
 const useStyles = makeStyles((theme) => ({
   body: {
     height: "inherit",
+    backgroundColor: "#d2e3c8",
   },
   button: {
     width: "100%",
     height: "100%",
+    backgroundColor: "#4f6f52",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#354b38",
+    },
   },
   jobTileOuter: {
     padding: "30px",
     margin: "20px 0",
     boxSizing: "border-box",
     width: "100%",
+    backgroundColor: "#d2e3c8", // Add a background color for job tiles
+    borderRadius: "12px",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
   },
   popupDialog: {
     height: "100%",
@@ -106,19 +115,19 @@ const JobTile = (props) => {
       <Grid container>
         <Grid container item xs={9} spacing={1} direction="column">
           <Grid item>
-            <Typography variant="h5">{job.title}</Typography>
+            <Typography variant="h5"><strong>{job.title}</strong></Typography>
           </Grid>
           <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
-          <Grid item>Role : {job.jobType}</Grid>
-          <Grid item>Salary : &#8377; {job.salary} per month</Grid>
+          <Grid item><strong>Role :</strong> {job.jobType}</Grid>
+          <Grid item>  <strong>Salary :</strong> ৳ {job.salary} per month</Grid>
           <Grid item>
-            Duration :{" "}
+          <strong>Duration :</strong>{" "}
             {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
           </Grid>
-          <Grid item>Posted By : {job.recruiter.name}</Grid>
-          <Grid item>Application Deadline : {deadline}</Grid>
+          <Grid item><strong>Posted By :</strong> {job.recruiter.name}</Grid>
+          <Grid item> <strong>Application Deadline :</strong> {deadline}</Grid>
 
           <Grid item>
             {job.skillsets.map((skill) => (
@@ -136,7 +145,7 @@ const JobTile = (props) => {
             }}
             disabled={userType() === "recruiter"}
           >
-            Apply
+            <strong>Apply</strong>
           </Button>
         </Grid>
       </Grid>

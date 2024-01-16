@@ -31,7 +31,8 @@ import apiList, { server } from "../../lib/apiList";
 
 const useStyles = makeStyles((theme) => ({
   body: {
-    height: "inherit",
+    maxWidth: "100px", // Set to your desired maximum width
+    margin: "0 auto", // Center the content horizontally
   },
   statusBlock: {
     width: "100%",
@@ -357,7 +358,7 @@ const ApplicationTile = (props) => {
     rejected: "#D1345B",
     deleted: "#B49A67",
     cancelled: "#FF8484",
-    finished: "#4EA5D9",
+    finished: "#176636",
   };
 
   const getResume = () => {
@@ -588,7 +589,7 @@ const ApplicationTile = (props) => {
               .join(", ")}
           </Grid>
           <Grid item>
-            SOP: {application.sop !== "" ? application.sop : "Not Submitted"}
+            Cover Letter : {application.sop !== "" ? application.sop : "Not Submitted"}
           </Grid>
           <Grid item>
             {application.jobApplicant.skills.map((skill) => (
@@ -602,6 +603,10 @@ const ApplicationTile = (props) => {
               variant="contained"
               className={classes.statusBlock}
               color="primary"
+              style={{
+                background: "#86a789", // Green color
+                color: "#ffffff", // White text
+              }}
               onClick={() => getResume()}
             >
               Download Resume

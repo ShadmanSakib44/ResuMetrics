@@ -5,6 +5,7 @@ import video1 from './video1.mp4';
 import "./Welcome.css"; // Import a separate CSS file for styling
 import img1 from './Job hunt-amico.png';
 import img2 from './Interview-rafiki.png';
+import ContactUs from './ContactUs';
 
 const Welcome = (props) => {
   const videos = [video1];
@@ -123,7 +124,7 @@ const Welcome = (props) => {
             color: "#4f6f52",
             letterSpacing: "1px"
           }}>
-            A Platform for Handling <em style={{ fontStyle: "normal", color: "#ed563b", fontWeight: "500" }}>JOBs and Applicants</em>
+            A Platform for Handling <em style={{ fontFamily: "'Funkster', cursive", color: "#ed563b", fontWeight: "500" }}>JOBs and Applicants</em>
           </Typography>
           <Typography variant="body1" style={{
             fontSize: "16px",
@@ -162,9 +163,10 @@ const Welcome = (props) => {
         </Grid>
       </Grid>
     </div>
+    <ContactUs/>
     <div className="footer" >
         <Typography variant="body1" style={{ textAlign: "center", fontSize: "14px", color: "#4f6f52", marginTop: "20px" }}>
-          © 2024 ResuMetrice. All rights reserved.
+          © 2024 ResuMetrics. All rights reserved.
         </Typography>
       </div>
   </Grid>

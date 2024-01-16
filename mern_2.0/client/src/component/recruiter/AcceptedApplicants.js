@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   avatar: {
-    width: theme.spacing(17),
-    height: theme.spacing(17),
+    width: theme.spacing(15),
+    height: theme.spacing(15),
   },
 }));
 
@@ -66,27 +66,28 @@ const FilterPopup = (props) => {
     <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
       <Paper
         style={{
-          padding: "50px",
+          padding: "40px",
           outline: "none",
           minWidth: "50%",
+          background: "#d2e3c8",
         }}
       >
-        <Grid container direction="column" alignItems="center" spacing={3}>
+        <Grid container direction="column" alignItems="center" spacing={3} style={{background:"#d2e3c8"}}>
           {}
           <Grid container item alignItems="center">
             <Grid item xs={3}>
               Sort
             </Grid>
-            <Grid item container direction="row" xs={9}>
+            <Grid item container direction="row" xs={9} style={{background:"#fff"}}>
               <Grid
                 item
                 container
                 xs={6}
                 justify="space-around"
                 alignItems="center"
-                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
+                style={{ border: "1px solid #000", borderRadius: "5px" }}
               >
-                <Grid item>
+                <Grid item >
                   <Checkbox
                     name="name"
                     checked={searchOptions.sort["jobApplicant.name"].status}
@@ -140,7 +141,7 @@ const FilterPopup = (props) => {
                 xs={6}
                 justify="space-around"
                 alignItems="center"
-                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
+                style={{ border: "1px solid #000", borderRadius: "5px" }}
               >
                 <Grid item>
                   <Checkbox
@@ -196,7 +197,7 @@ const FilterPopup = (props) => {
                 xs={6}
                 justify="space-around"
                 alignItems="center"
-                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
+                style={{ border: "1px solid #000", borderRadius: "5px" }}
               >
                 <Grid item>
                   <Checkbox
@@ -252,7 +253,7 @@ const FilterPopup = (props) => {
                 xs={6}
                 justify="space-around"
                 alignItems="center"
-                style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
+                style={{ border: "1px solid #000", borderRadius: "5px" }}
               >
                 <Grid item>
                   <Checkbox
@@ -306,7 +307,7 @@ const FilterPopup = (props) => {
             </Grid>
           </Grid>
 
-          <Grid item>
+          <Grid item >
             <Button
               variant="contained"
               color="primary"
@@ -377,13 +378,13 @@ const ApplicationTile = (props) => {
   };
 
   const colorSet = {
-    applied: "#3454D1",
-    shortlisted: "#DC851F",
-    accepted: "#09BC8A",
-    rejected: "#D1345B",
-    deleted: "#B49A67",
-    cancelled: "#FF8484",
-    finished: "#4EA5D9",
+    applied: "#4f6f52",
+    shortlisted: "#f7e91b",
+    accepted: "#0eeb45",
+    rejected: "#eb2f0e",
+    deleted: "#eb8b0e",
+    cancelled: "#eb8b0e",
+    finished: "#86a789",
   };
 
   const getResume = () => {
@@ -489,7 +490,7 @@ const ApplicationTile = (props) => {
           <Grid item>Role: {application.job.jobType}</Grid>
           <Grid item>Applied On: {appliedOn.toLocaleDateString()}</Grid>
           <Grid item>
-            SOP: {application.sop !== "" ? application.sop : "Not Submitted"}
+            Cover Letter: {application.sop !== "" ? application.sop : "Not Submitted"}
           </Grid>
           <Grid item>
             {application.jobApplicant.skills.map((skill) => (
@@ -497,46 +498,57 @@ const ApplicationTile = (props) => {
             ))}
           </Grid>
         </Grid>
-        <Grid item container direction="column" xs={3}>
-          <Grid item>
-            <Button
-              variant="contained"
-              className={classes.statusBlock}
-              color="primary"
-              onClick={() => getResume()}
-            >
-              Download Resume
-            </Button>
-          </Grid>
-          <Grid item container xs>
-            {/* {buttonSet[application.status]} */}
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.statusBlock}
-              style={{
-                background: "#09BC8A",
-              }}
-              onClick={() => {
-                setOpenEndJob(true);
-              }}
-            >
-              End Job
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.statusBlock}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              Rate Applicant
-            </Button>
-          </Grid>
+        <Grid item container direction="column" xs={3} spacing={2}>
+        <Grid item>
+          <Button
+            variant="contained"
+            className={classes.statusBlock}
+            color="primary"
+            style={{
+              background: "#739072",
+              borderRadius: "8px", // Smoothing the edges
+              width: "100%", // Making the button full-width
+            }}
+            onClick={() => getResume()}
+          >
+            Download Resume
+          </Button>
         </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.statusBlock}
+            style={{
+              background: "#4f6f52",
+              borderRadius: "8px",
+              width: "100%",
+            }}
+            onClick={() => {
+              setOpenEndJob(true);
+            }}
+          >
+            End Job
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{
+              background: "#739072",
+              borderRadius: "8px",
+              width: "100%",
+            }}
+            className={classes.statusBlock}
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            Rate Applicant
+          </Button>
+        </Grid>
+      </Grid>
       </Grid>
       <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
         <Paper
@@ -548,6 +560,7 @@ const ApplicationTile = (props) => {
             justifyContent: "center",
             minWidth: "30%",
             alignItems: "center",
+            background: "#d2e3c8",
           }}
         >
           <Rating
@@ -703,10 +716,10 @@ const AcceptedApplicants = (props) => {
         item
         direction="column"
         alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
+        style={{ padding: "30px", minHeight: "93vh", background:"#d2e3c8" }}
       >
         <Grid item>
-          <Typography variant="h2" style={{color:"white",fontWeight:"bold"}}>Employees</Typography>
+          <Typography variant="h2" style={{color:"#4f6f52"}}>Employees</Typography>
         </Grid>
         <Grid item>
           <IconButton onClick={() => setFilterOpen(true)}>
@@ -716,7 +729,6 @@ const AcceptedApplicants = (props) => {
         <Grid
           container
           item
-          xs
           direction="column"
           style={{ width: "100%" }}
           alignItems="stretch"
