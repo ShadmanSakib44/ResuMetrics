@@ -109,10 +109,11 @@ import {
   IconButton,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import logo from './logo1.png';
 
 import isAuth, { userType } from "../lib/isAuth";
 
-const drawerWidth = 200;
+const drawerWidth = 150;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -132,6 +133,13 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     background: "#4f6752",
     color: "#ffffff",
+  },
+  appBar: {
+    background: "#4f6752",
+    transition: "background 0.3s", // Add a transition for smooth color change
+  },
+  appBarHover: {
+    background: "#333", // Darker color when hovered
   },
 }));
 
@@ -159,14 +167,14 @@ const Navbar = (props) => {
         <Toolbar style={{ minHeight: "80px" }}>
           <div className={classes.title}>
             <img
-              src="https://www.linkpicture.com/q/job-search.png"
-              width="30px"
+              src={logo}
+              width="60px"
               height="auto"
               alt="logo"
-              style={{ marginRight: "10px" }} // Adjust the margin as needed
+              style={{ marginRight: "0px" }} // Adjust the margin as needed
             />
-            <Typography variant="h6" style={{ fontSize: "32px", fontWeight: "800" }}>
-              ResuMetrice
+            <Typography variant="h6" style={{ fontSize: "32px", fontWeight: "800", fontFamily: "'Funkster', cursive" }}>
+              ResuMetrics
             </Typography>
           </div>
           <IconButton

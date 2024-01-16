@@ -315,7 +315,7 @@ const Login = (props) => {
         >
           <Grid item>
             <Typography variant="h3" component="h2" style={{ color: "#4f6f52", fontWeight: "bold" }}>
-              Welcome to ResuMetrice
+              Welcome to ResuMetrics
             </Typography>
             <div className={classes.smallerLine}></div>
             <Typography variant="subtitle1" style={{ color: "#4f6f52" }}>

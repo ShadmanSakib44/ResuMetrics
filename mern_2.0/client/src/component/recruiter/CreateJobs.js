@@ -383,14 +383,16 @@ const CreateJobs = () => {
 
   return (
     <>
+    
       <Grid
         container
         item
         direction="column"
         alignItems="center"
         className={classes.container}
+        
       >
-        <Typography variant="h2" className={classes.header}>
+        <Typography variant="h3" className={classes.header}>
           Create Job Opportunities
         </Typography>
         <Grid item container xs direction="column" justify="center">
@@ -450,7 +452,7 @@ const CreateJobs = () => {
                   >
                     <MenuItem value="Full Time">Full Time</MenuItem>
                     <MenuItem value="Part Time">Part Time</MenuItem>
-                    <MenuItem value="Work From Home">Work From Home</MenuItem>
+                    <MenuItem value="Work From Home">(Remote)Work From Home</MenuItem>
                   </TextField>
                 </Grid>
                 <Grid item>
@@ -474,7 +476,7 @@ const CreateJobs = () => {
                 </Grid>
                 <Grid item>
                   <TextField
-                    label="Salary"
+                    label="Salary(in BDT(taka))"
                     type="number"
                     variant="outlined"
                     color="#d2e3c8"
@@ -533,7 +535,7 @@ const CreateJobs = () => {
                   className={classes.submitButton}
                   onClick={() => handleUpdate()}
                 >
-                  Create Job
+                  Create job requirements
                 </Button>
               </Grid>
             </Paper>
