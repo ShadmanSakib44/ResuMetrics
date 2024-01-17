@@ -216,23 +216,6 @@ const Profile = (props) => {
       });
     }
     
-    // axios(address, {
-    //   method: "GET",
-    //   responseType: "blob",
-    // })
-    //   .then((response) => {
-    //     const file = new Blob([response.data], { type: "application/pdf" });
-    //     const fileURL = URL.createObjectURL(file);
-    //     window.open(fileURL);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     setPopup({
-    //       open: true,
-    //       severity: "error",
-    //       message: "You have not uploaded any resume. Upload one to view!",
-    //     });
-    //   });
   }
 
 
@@ -295,6 +278,29 @@ const Profile = (props) => {
         style={{ padding: "150px", minHeight: "93vh",background:"#d2e3c8" }}
         
       >
+         <>
+            <Grid item style={{ marginTop: "30px", animation: "bounce 1s infinite",marginBottom:"20px" }}>
+              <Typography variant="h3" style={{ color: "#4f6f52", fontWeight: "bold" }}>
+                Applicant's Profile
+              </Typography>
+            </Grid>
+
+            <style>
+              {`
+                @keyframes bounce {
+                  0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                  }
+                  40% {
+                    transform: translateY(-10px);
+                  }
+                  60% {
+                    transform: translateY(-10px);
+                  }
+                }
+              `}
+            </style>
+          </>
 
         
         <Grid item xs>
@@ -325,7 +331,7 @@ const Profile = (props) => {
                   
                 />
                 <Typography variant="h3" component="h2" style={{color:"#4f6f52",fontWeight:"bold"}}>
-                Profile
+                {profileDetails.name}
                 </Typography>
               </Grid>
             <Grid container direction="column" alignItems="" spacing={3}>

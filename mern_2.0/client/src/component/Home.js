@@ -36,15 +36,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#d2e3c8",
   },
   button: {
-    width: "40%",
-    height: "100%",
+    width: "50%",
+    height: "50%",
     backgroundColor: "#4f6f52",
     color: "white",
-    marginBottom: "auto",
+    marginTop: "65px",
+    border: "2px solid #ed563b", // Add a white border
+    borderRadius: "8px", // Set your desired border radius
     "&:hover": {
       backgroundColor: "#354b38",
     },
   },
+  
   jobTileOuter: {
     padding: "30px",
     margin: "20px 0",
@@ -136,7 +139,7 @@ const JobTile = (props) => {
             ))}
           </Grid>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Button
             variant="contained"
             color="primary"
@@ -144,12 +147,19 @@ const JobTile = (props) => {
             onClick={() => {
               setOpen(true);
             }}
-            style={{ marginRight: "2px" }}
+            style={{
+              marginRight: "0px",
+              background: "#4f6f52", // Set your desired background color
+              color: "#ffffff", // Set your desired text color
+              borderRadius: "8px", // Set your desired border radius
+              fontWeight: "bold", // Set the text to be bold
+            }}
             disabled={userType() === "recruiter"}
           >
-            <strong>Apply</strong>
+            Apply
           </Button>
         </Grid>
+
       </Grid>
       <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
         <Paper
@@ -164,10 +174,10 @@ const JobTile = (props) => {
           }}
         >
           <TextField
-            label="Write SOP (upto 250 words)"
+            label="Write Cover Letter (upto 250 words)"//nedd to check
             multiline
             rows={8}
-            style={{ width: "100%", marginBottom: "30px" }}
+            style={{ width: "100%", marginBottom: "30px",background:"#d2e3c8" }}
             variant="outlined"
             value={sop}
             onChange={(event) => {
@@ -183,7 +193,7 @@ const JobTile = (props) => {
           <Button
             variant="contained"
             color="primary"
-            style={{ padding: "10px 50px" }}
+            style={{ padding: "10px 50px" , background:"#4f6f52"}}
             onClick={() => handleApply()}
           >
             Submit

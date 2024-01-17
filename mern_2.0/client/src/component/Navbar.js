@@ -1,99 +1,4 @@
-// import { useNavigate } from "react-router-dom";
 
-// import {
-//   AppBar, Toolbar, Typography, Button, makeStyles
-// } from "@material-ui/core"; // Import useNavigate
-
-// import isAuth, { userType } from "../lib/isAuth";
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   menuButton: {
-//     marginRight: theme.spacing(2),
-//   },
-//   title: {
-//     flexGrow: 1,
-//   },
-// }));
-
-// const Navbar = (props) => {
-//   const classes = useStyles();
-//   const navigate = useNavigate(); // Use the useNavigate hook
-
-//   const handleClick = (location) => {
-//     console.log(location);
-//     navigate(location); // Use navigate to change the location
-//   };
-  
-//     return (
-//       <AppBar position="fixed" background= "transparent">
-//         <Toolbar style={{minHeight: "80px"}}>
-//           <Typography variant="h6" className={classes.title} style={{fontSize: "32px",fontWeight: "800"}}>
-//           <img src="https://www.linkpicture.com/q/job-search.png" width="30px" height="auto"></img>ResuMetrice
-//           </Typography>
-//           <div style={{marginTop:"20px"}}>
-//           {isAuth() ? (
-//             userType() === "recruiter" ? (
-//               <>
-                
-//                 <Button color="inherit" onClick={() => handleClick("/home")}>
-//                 <Typography style={{fontSize:"18px"}}>Home</Typography>
-//                 </Button>
-//                 <Button color="inherit" onClick={() => handleClick("/addjob")}>
-//                 <Typography style={{fontSize:"18px"}}>Add Jobs</Typography>
-//                 </Button>
-//                 <Button color="inherit" onClick={() => handleClick("/myjobs")}>
-//                 <Typography style={{fontSize:"18px"}}>Posted</Typography>
-//                 </Button>
-//                 <Button color="inherit" onClick={() => handleClick("/employees")}>
-//                 <Typography style={{fontSize:"18px"}}>Employees</Typography>
-//                 </Button>
-//                 <Button color="inherit" onClick={() => handleClick("/profile")}>
-//                 <Typography style={{fontSize:"18px"}}>Profile</Typography>
-//                 </Button>
-//                 <Button color="inherit" onClick={() => handleClick("/logout")}>
-//                 <Typography style={{fontSize:"18px"}}>Logout</Typography>
-//                 </Button>
-//               </>
-//             ) : (
-//               <>
-//                 <Button color="inherit" onClick={() => handleClick("/home")}>
-//                 <Typography style={{fontSize:"18px"}}>Home</Typography>
-//                 </Button>
-//                 <Button
-//                   color="inherit"
-//                   onClick={() => handleClick("/applications")}
-//                 >
-//                   <Typography style={{fontSize:"18px"}}>Applied</Typography>
-//                 </Button>
-//                 <Button color="inherit" onClick={() => handleClick("/profile")}>
-//                 <Typography style={{fontSize:"18px"}}>Profile</Typography>
-//                 </Button>
-//                 <Button color="inherit" onClick={() => handleClick("/logout")}>
-//                 <Typography style={{fontSize:"18px"}}>Logout</Typography>
-//                 </Button>
-//               </>
-//             )
-//           ) : (
-//             <>
-//               <Button color="inherit" onClick={() => handleClick("/login")}>
-//                 <Typography style={{fontSize:"18px"}}>Login</Typography>
-//               </Button>
-//               <Button color="inherit" onClick={() => handleClick("/signup")}>
-//               <Typography style={{fontSize:"18px"}}>SignUp</Typography>
-//               </Button>
-//             </>
-//           )}
-//           </div>
-//         </Toolbar>
-//       </AppBar>
-//     );
-//   };
-  
-//   export default Navbar;
-/* eslint-disable */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -120,11 +25,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: "auto", // Move the menuButton to the right
+    marginLeft: "auto",
   },
   title: {
     display: "flex",
-    alignItems: "center", // Align items vertically
+    alignItems: "center",
   },
   drawer: {
     width: drawerWidth,
@@ -136,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     background: "#4f6752",
-    transition: "background 0.3s", // Add a transition for smooth color change
+    transition: "background 0.3s",
   },
   appBarHover: {
-    background: "#333", // Darker color when hovered
+    background: "#333",
   },
 }));
 
@@ -163,7 +68,7 @@ const Navbar = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" style={{ background: "#4f6752" }}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar style={{ minHeight: "80px" }}>
           <div className={classes.title}>
             <img
@@ -171,59 +76,61 @@ const Navbar = (props) => {
               width="60px"
               height="auto"
               alt="logo"
-              style={{ marginRight: "0px" }} // Adjust the margin as needed
+              style={{ marginRight: "0px" }} 
             />
             <Typography variant="h6" style={{ fontSize: "32px", fontWeight: "800", fontFamily: "'Funkster', cursive" }}>
               ResuMetrics
             </Typography>
           </div>
-          <IconButton
-            edge="end"
-            className={classes.menuButton}
-            color="inherit"
-            onClick={handleDrawerOpen}
-          >
-            <MenuIcon />
-          </IconButton>
+          {isAuth() && (
+            <IconButton
+              edge="end"
+              className={classes.menuButton}
+              color="inherit"
+              onClick={handleDrawerOpen}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
-          <Drawer
-      className={classes.drawer}
-      variant="temporary"
-      anchor="right"
-      open={openDrawer}
-      onClose={handleDrawerClose}
-      classes={{ paper: classes.drawerPaper }}
-    >
-      <List>
-        {isAuth() ? (
-          userType() === "recruiter" ? (
-            <>
+      <Drawer
+        className={classes.drawer}
+        variant="temporary"
+        anchor="right"
+        open={openDrawer}
+        onClose={handleDrawerClose}
+        classes={{ paper: classes.drawerPaper }}
+      >
+        <List>
+          {isAuth() ? (
+            userType() === "recruiter" ? (
+              <>
+               <ListItem button onClick={() => handleClick("/home")}>
+                 <ListItemText primary="Home" />
+               </ListItem>
+               <ListItem button onClick={() => handleClick("/addjob")}>
+                 <ListItemText primary="Add Jobs" />
+               </ListItem>
+               <ListItem button onClick={() => handleClick("/myjobs")}>
+                 <ListItemText primary="Posted" />
+               </ListItem>
+               <ListItem button onClick={() => handleClick("/employees")}>
+                 <ListItemText primary="Employees" />
+               </ListItem>
+               <ListItem button onClick={() => handleClick("/profile")}>
+                 <ListItemText primary="Profile" />
+               </ListItem>
+               <ListItem button onClick={() => handleClick("/logout")}>
+                 <ListItemText primary="Logout" />
+               </ListItem>
+              </>
+            ) : (
+              <>
               <ListItem button onClick={() => handleClick("/home")}>
-                <ListItemText primary="Home" />
-              </ListItem>
-              <ListItem button onClick={() => handleClick("/addjob")}>
-                <ListItemText primary="Add Jobs" />
-              </ListItem>
-              <ListItem button onClick={() => handleClick("/myjobs")}>
-                <ListItemText primary="Posted" />
-              </ListItem>
-              <ListItem button onClick={() => handleClick("/employees")}>
-                <ListItemText primary="Employees" />
-              </ListItem>
-              <ListItem button onClick={() => handleClick("/profile")}>
-                <ListItemText primary="Profile" />
-              </ListItem>
-              <ListItem button onClick={() => handleClick("/logout")}>
-                <ListItemText primary="Logout" />
-              </ListItem>
-            </>
-          ) : (
-            <>
-              <ListItem button onClick={() => handleClick("/home")}>
-                <ListItemText primary="Home" />
-              </ListItem>
-              <ListItem
+                 <ListItemText primary="Home" />
+               </ListItem>
+               <ListItem
                 button
                 onClick={() => handleClick("/applications")}
               >
@@ -235,12 +142,11 @@ const Navbar = (props) => {
               <ListItem button onClick={() => handleClick("/logout")}>
                 <ListItemText primary="Logout" />
               </ListItem>
-            </>
-          )
-        ) : null}
-      </List>
-    </Drawer>
-
+              </>
+            )
+          ) : null}
+        </List>
+      </Drawer>
     </div>
   );
 };
