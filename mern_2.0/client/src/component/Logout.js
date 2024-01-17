@@ -16,7 +16,7 @@ const Logout = (props) => {
       message: "Logged out successfully",
     });
 
-    navigate("/login"); // Navigate to the login page after logout
+    navigate("/"); // Navigate to the login page after logout
   }, [navigate, setPopup]);
 
   return null; // As the redirection is handled in the useEffect, you don't need to return anything here
