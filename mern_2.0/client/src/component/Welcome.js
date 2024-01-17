@@ -1,6 +1,6 @@
-
 import React, { useEffect, useRef, useState } from "react";
-import { Grid, Typography,Button } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import video1 from './video1.mp4';
 import { Link } from "react-router-dom";
 import "./Welcome.css"; // Import a separate CSS file for styling
@@ -27,65 +27,71 @@ const Welcome = (props) => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
   };
 
-  return (
+  const scrollToAbout = () => {
+    scroll.scrollTo(document.getElementById("about-section").offsetTop, {
+      duration: 800,
+      smooth: "easeInOutQuart",
+    });
+  };
 
+  return (
     <Grid container item direction="column" alignItems="center" justify="center">
-    <div className="video-container">
-      <div className="caption header-text">
-        {videos.map((videoSrc, index) => (
-          <video
-            key={videoSrc}
-            className={`videoTag ${index === currentVideoIndex ? 'active' : ''}`}
-            autoPlay
-            loop
-            muted
-            onEnded={handleVideoEnd}
-            style={{
-              minWidth: "100%",
-              minHeight: "100vh",
-              maxWidth: "100%",
-              maxHeight: "100vh",
-              objectFit: "cover",
-              zIndex: "-1",
-              boxSizing: "border-box",
-            }}
-            ref={videoRef}
-          >
-            <source src={videoSrc} type='video/mp4' />
-          </video>
-        ))}
-        <div className="text-overlay">
-          <Typography variant="h6" style={{
-            fontSize: "18px",
-            fontWeight: "800",
-            color: "#4f6f52",
-            marginBottom: "10px"
-          }}>
-            A smart solution to Resume related problems
-          </Typography>
-          <Typography variant="h2" style={{
-            fontSize: "36px",
-            fontWeight: "800",
-            color: "#4f6f52",
-            letterSpacing: "1px"
-          }}>
-            A Platform for Handling <em style={{ fontFamily: "'Funkster', cursive", color: "#ed563b", fontWeight: "500" }}>JOBs and Applicants</em>
-          </Typography>
-          <Typography variant="body1" style={{
-            fontSize: "16px",
-            color: "black",
-            marginTop: "20px"
-          }}>
-            Unlock your career potential with our innovative resume solutions.
-          </Typography>
-          <Typography variant="body1" style={{
-            fontSize: "16px",
-            color: "black",
-            marginTop: "10px"
-          }}>
-            Stand out from the crowd and land your dream job today!
-          </Typography>
-          {!isAuth() && (
+      <div className="video-container">
+        <div className="caption header-text">
+          {videos.map((videoSrc, index) => (
+            <video
+              key={videoSrc}
+              className={`videoTag ${index === currentVideoIndex ? 'active' : ''}`}
+              autoPlay
+              loop
+              muted
+              onEnded={handleVideoEnd}
+              style={{
+                minWidth: "100%",
+                minHeight: "100vh",
+                maxWidth: "100%",
+                maxHeight: "100vh",
+                objectFit: "cover",
+                zIndex: "-1",
+                boxSizing: "border-box",
+              }}
+              ref={videoRef}
+            >
+              <source src={videoSrc} type='video/mp4' />
+            </video>
+          ))}
+          <div className="text-overlay">
+            <Typography variant="h6" style={{
+              fontSize: "18px",
+              fontWeight: "800",
+              color: "#4f6f52",
+              marginBottom: "10px"
+            }}>
+              A smart solution to Resume related problems
+            </Typography>
+            <Typography variant="h2" style={{
+              fontSize: "36px",
+              fontWeight: "800",
+              color: "#4f6f52",
+              letterSpacing: "1px"
+            }}>
+              A Platform for Handling <em style={{ fontFamily: "'Funkster', cursive", color: "#ed563b", fontWeight: "500" }}>JOBs and Applicants</em>
+            </Typography>
+            <Typography variant="body1" style={{
+              fontSize: "16px",
+              color: "black",
+              marginTop: "20px"
+            }}>
+              Unlock your career potential with our innovative resume solutions.
+            </Typography>
+            <Typography variant="body1" style={{
+              fontSize: "16px",
+              color: "black",
+              marginTop: "10px"
+            }}>
+              Stand out from the crowd and land your dream job today!
+            </Typography>
+            {!isAuth() && (
               <>
                 <Link to="/login">
                   <Button
@@ -117,60 +123,79 @@ const Welcome = (props) => {
                 </Link>
               </>
             )}
-        </div>
-        
-      </div>
-    </div>
 
-    <div className="about-section">
-      <Grid container item direction="row" alignItems="center" justify="center" style={{ marginTop: "30px" }}>
-        <Grid item xs={12} md={4}>
-          <img
-            src={img1}
-            alt="About Left"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              borderRadius: "8px",
-              transition: "transform 0.5s",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
-            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-          />
+<div>
+          <ScrollLink to="about-section" smooth={true} duration={800}>
+            <Typography
+              variant="body1"
+              style={{
+                fontSize: "16px",
+                color: "black",
+                marginTop: "10px",
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
+              onClick={scrollToAbout}
+            >
+              Learn more...
+            </Typography>
+          </ScrollLink>
+          </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div id="about-section" className="about-section">
+        <Grid container item direction="row" alignItems="center" justify="center" style={{ marginTop: "30px" }}>
+          <Grid item xs={12} md={4}>
+            <img
+              src={img1}
+              alt="About Left"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                borderRadius: "8px",
+                transition: "transform 0.5s",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+              onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Typography variant="body1" style={{ textAlign: "center", fontSize: "60px", fontWeight: "1000", color: "#4f6f52" }}>
+              About Our Website
+            </Typography>
+            <Typography variant="body2" style={{ textAlign: "center", fontSize: "18px", color: "black", marginTop: "10px" }}>
+              Here you can find a smart solution to resume-related problems. Our platform is designed to handle jobs and applicants efficiently.
+              Unlock your career potential with our innovative resume solutions and stand out from the crowd to land your dream job.
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <img
+              src={img2}
+              alt="About Right"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                borderRadius: "8px",
+                transition: "transform 0.5s",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+              onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="body1" style={{ textAlign: "center", fontSize: "60px", fontWeight: "1000", color: "#4f6f52" }}>
-            About Our Website
-          </Typography>
-          <Typography variant="body2" style={{ textAlign: "center", fontSize: "18px", color: "black", marginTop: "10px" }}>
-            Here you can find a smart solution to resume-related problems. Our platform is designed to handle jobs and applicants efficiently.
-            Unlock your career potential with our innovative resume solutions and stand out from the crowd to land your dream job.
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <img
-            src={img2}
-            alt="About Right"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              borderRadius: "8px",
-              transition: "transform 0.5s",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
-            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-          />
-        </Grid>
-      </Grid>
-    </div>
-    <ContactUs/>
-    <div className="footer" >
+      </div>
+      <ContactUs />
+      <div className="footer">
         <Typography variant="body1" style={{ textAlign: "center", fontSize: "14px", color: "#4f6f52", marginTop: "20px" }}>
           © 2024 ResuMetrics. All rights reserved.
         </Typography>
       </div>
-  </Grid>
-   
+    </Grid>
   );
 };
 
