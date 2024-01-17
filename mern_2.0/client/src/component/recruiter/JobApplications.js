@@ -739,7 +739,7 @@ const JobApplications = (props) => {
         item
         direction="column"
         alignItems="center"
-        style={{ padding: "30px", minHeight: "45vh" }}
+        style={{ padding: "30px", minHeight: "93vh" }}
       >
         <Grid item>
           <Typography variant="h2" style={{color:"white",fontWeight:"bold"}}>Applications</Typography>
