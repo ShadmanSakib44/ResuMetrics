@@ -392,9 +392,29 @@ const CreateJobs = () => {
         className={classes.container}
         
       >
-        <Typography variant="h3" className={classes.header}>
-          Create Job Opportunities
-        </Typography>
+ <>
+            <Grid item style={{ marginTop: "30px", animation: "bounce 1s infinite",marginBottom:"20px" }}>
+              <Typography variant="h3" style={{ color: "#4f6f52", fontWeight: "bold" }}>
+              Create Job Applications
+              </Typography>
+            </Grid>
+
+            <style>
+              {`
+                @keyframes bounce {
+                  0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                  }
+                  40% {
+                    transform: translateY(-10px);
+                  }
+                  60% {
+                    transform: translateY(-10px);
+                  }
+                }
+              `}
+            </style>
+          </>
         <Grid item container xs direction="column" justify="center">
           <Grid item>
             <Paper className={classes.paper}>
@@ -535,7 +555,7 @@ const CreateJobs = () => {
                   className={classes.submitButton}
                   onClick={() => handleUpdate()}
                 >
-                  Create job requirements
+                  Create job Applications
                 </Button>
               </Grid>
             </Paper>

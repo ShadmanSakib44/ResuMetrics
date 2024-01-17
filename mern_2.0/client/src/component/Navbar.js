@@ -187,68 +187,60 @@ const Navbar = (props) => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="temporary"
-        anchor="right"
-        open={openDrawer}
-        onClose={handleDrawerClose}
-        classes={{ paper: classes.drawerPaper }}
-      >
-        <List>
-          {isAuth() ? (
-            userType() === "recruiter" ? (
-              <>
-                <ListItem button onClick={() => handleClick("/home")}>
-                  <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem button onClick={() => handleClick("/addjob")}>
-                  <ListItemText primary="Add Jobs" />
-                </ListItem>
-                <ListItem button onClick={() => handleClick("/myjobs")}>
-                  <ListItemText primary="Posted" />
-                </ListItem>
-                <ListItem button onClick={() => handleClick("/employees")}>
-                  <ListItemText primary="Employees" />
-                </ListItem>
-                <ListItem button onClick={() => handleClick("/profile")}>
-                  <ListItemText primary="Profile" />
-                </ListItem>
-                <ListItem button onClick={() => handleClick("/logout")}>
-                  <ListItemText primary="Logout" />
-                </ListItem>
-              </>
-            ) : (
-              <>
-                <ListItem button onClick={() => handleClick("/home")}>
-                  <ListItemText primary="Home" />
-                </ListItem>
-                <ListItem
-                  button
-                  onClick={() => handleClick("/applications")}
-                >
-                  <ListItemText primary="Applied" />
-                </ListItem>
-                <ListItem button onClick={() => handleClick("/profile")}>
-                  <ListItemText primary="Profile" />
-                </ListItem>
-                <ListItem button onClick={() => handleClick("/logout")}>
-                  <ListItemText primary="Logout" />
-                </ListItem>
-              </>
-            )
-          ) : (
+          <Drawer
+      className={classes.drawer}
+      variant="temporary"
+      anchor="right"
+      open={openDrawer}
+      onClose={handleDrawerClose}
+      classes={{ paper: classes.drawerPaper }}
+    >
+      <List>
+        {isAuth() ? (
+          userType() === "recruiter" ? (
             <>
-              <ListItem button onClick={() => handleClick("/login")}>
-                <ListItemText primary="Login" />
+              <ListItem button onClick={() => handleClick("/home")}>
+                <ListItemText primary="Home" />
               </ListItem>
-              <ListItem button onClick={() => handleClick("/signup")}>
-                <ListItemText primary="SignUp" />
+              <ListItem button onClick={() => handleClick("/addjob")}>
+                <ListItemText primary="Add Jobs" />
+              </ListItem>
+              <ListItem button onClick={() => handleClick("/myjobs")}>
+                <ListItemText primary="Posted" />
+              </ListItem>
+              <ListItem button onClick={() => handleClick("/employees")}>
+                <ListItemText primary="Employees" />
+              </ListItem>
+              <ListItem button onClick={() => handleClick("/profile")}>
+                <ListItemText primary="Profile" />
+              </ListItem>
+              <ListItem button onClick={() => handleClick("/logout")}>
+                <ListItemText primary="Logout" />
               </ListItem>
             </>
-          )}
-        </List>
-      </Drawer>
+          ) : (
+            <>
+              <ListItem button onClick={() => handleClick("/home")}>
+                <ListItemText primary="Home" />
+              </ListItem>
+              <ListItem
+                button
+                onClick={() => handleClick("/applications")}
+              >
+                <ListItemText primary="Applied" />
+              </ListItem>
+              <ListItem button onClick={() => handleClick("/profile")}>
+                <ListItemText primary="Profile" />
+              </ListItem>
+              <ListItem button onClick={() => handleClick("/logout")}>
+                <ListItemText primary="Logout" />
+              </ListItem>
+            </>
+          )
+        ) : null}
+      </List>
+    </Drawer>
+
     </div>
   );
 };

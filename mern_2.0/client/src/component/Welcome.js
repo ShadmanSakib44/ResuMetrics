@@ -1,11 +1,14 @@
 
 import React, { useEffect, useRef, useState } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography,Button } from "@material-ui/core";
 import video1 from './video1.mp4';
+import { Link } from "react-router-dom";
 import "./Welcome.css"; // Import a separate CSS file for styling
 import img1 from './Job hunt-amico.png';
 import img2 from './Interview-rafiki.png';
 import ContactUs from './ContactUs';
+
+import isAuth from "../lib/isAuth";
 
 const Welcome = (props) => {
   const videos = [video1];
@@ -140,17 +143,61 @@ const Welcome = (props) => {
           }}>
             Stand out from the crowd and land your dream job today!
           </Typography>
+          {!isAuth() && (
+              <>
+                <Link to="/login">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    style={{
+                      marginTop: "20px",
+                      background: "#4f6f52",
+                      color: "#ffffff",
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="large"
+                    style={{
+                      marginTop: "20px",
+                      marginLeft: "10px",
+                      background: "#ed563b",
+                    }}
+                  >
+                    Signup
+                  </Button>
+                </Link>
+              </>
+            )}
         </div>
+        
       </div>
     </div>
 
     <div className="about-section">
       <Grid container item direction="row" alignItems="center" justify="center" style={{ marginTop: "30px" }}>
         <Grid item xs={12} md={4}>
-          <img src={img1} alt="About Left" style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }} />
+          <img
+            src={img1}
+            alt="About Left"
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: "8px",
+              transition: "transform 0.5s",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          />
         </Grid>
         <Grid item xs={12} md={4}>
-          <Typography variant="body1" style={{ textAlign: "center", fontSize: "20px", fontWeight: "500", color: "#4f6f52" }}>
+          <Typography variant="body1" style={{ textAlign: "center", fontSize: "60px", fontWeight: "1000", color: "#4f6f52" }}>
             About Our Website
           </Typography>
           <Typography variant="body2" style={{ textAlign: "center", fontSize: "18px", color: "black", marginTop: "10px" }}>
@@ -159,7 +206,18 @@ const Welcome = (props) => {
           </Typography>
         </Grid>
         <Grid item xs={12} md={4}>
-          <img src={img2} alt="About Right" style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }} />
+          <img
+            src={img2}
+            alt="About Right"
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: "8px",
+              transition: "transform 0.5s",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          />
         </Grid>
       </Grid>
     </div>

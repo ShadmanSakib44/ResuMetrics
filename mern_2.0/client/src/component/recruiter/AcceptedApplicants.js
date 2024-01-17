@@ -255,54 +255,53 @@ const FilterPopup = (props) => {
                 alignItems="center"
                 style={{ border: "1px solid #000", borderRadius: "5px" }}
               >
-                <Grid item>
-                  <Checkbox
-                    name="rating"
-                    checked={searchOptions.sort["jobApplicant.rating"].status}
-                    onChange={(event) =>
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          "jobApplicant.rating": {
-                            ...searchOptions.sort[["jobApplicant.rating"]],
-                            status: event.target.checked,
-                          },
-                        },
-                      })
-                    }
-                    id="rating"
-                  />
-                </Grid>
-                <Grid item>
-                  <label for="rating">
-                    <Typography>Rating</Typography>
-                  </label>
-                </Grid>
-                <Grid item>
-                  <IconButton
-                    disabled={!searchOptions.sort["jobApplicant.rating"].status}
-                    onClick={() => {
-                      setSearchOptions({
-                        ...searchOptions,
-                        sort: {
-                          ...searchOptions.sort,
-                          "jobApplicant.rating": {
-                            ...searchOptions.sort["jobApplicant.rating"],
-                            desc: !searchOptions.sort["jobApplicant.rating"]
-                              .desc,
-                          },
-                        },
-                      });
-                    }}
-                  >
-                    {searchOptions.sort["jobApplicant.rating"].desc ? (
-                      <ArrowDownwardIcon />
-                    ) : (
-                      <ArrowUpwardIcon />
-                    )}
-                  </IconButton>
-                </Grid>
+              <Grid item>
+              <Checkbox
+                name="rating"
+                checked={searchOptions.sort["jobApplicant.rating"].status}
+                onChange={(event) =>
+                  setSearchOptions({
+                    ...searchOptions,
+                    sort: {
+                      ...searchOptions.sort,
+                      "jobApplicant.rating": {
+                        ...searchOptions.sort[["jobApplicant.rating"]],
+                        status: event.target.checked,
+                      },
+                    },
+                  })
+                }
+                id="rating"
+              />
+            </Grid>
+            <Grid item>
+              <label htmlFor="rating">
+                <Typography>Rating</Typography>
+              </label>
+            </Grid>
+            <Grid item>
+              <IconButton
+                disabled={!searchOptions.sort["jobApplicant.rating"].status}
+                onClick={() => {
+                  setSearchOptions({
+                    ...searchOptions,
+                    sort: {
+                      ...searchOptions.sort,
+                      "jobApplicant.rating": {
+                        ...searchOptions.sort["jobApplicant.rating"],
+                        desc: !searchOptions.sort["jobApplicant.rating"].desc,
+                      },
+                    },
+                  });
+                }}
+              >
+                {searchOptions.sort["jobApplicant.rating"].desc ? (
+                  <ArrowDownwardIcon />
+                ) : (
+                  <ArrowUpwardIcon />
+                )}
+              </IconButton>
+            </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -732,7 +731,9 @@ const AcceptedApplicants = (props) => {
           direction="column"
           style={{ width: "60%" }}
           alignItems="stretch"
+
         justifyContent="left"
+
         >
           {applications.length > 0 ? (
             applications.map((obj) => (

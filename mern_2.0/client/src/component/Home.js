@@ -36,10 +36,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#d2e3c8",
   },
   button: {
-    width: "100%",
+    width: "40%",
     height: "100%",
     backgroundColor: "#4f6f52",
     color: "white",
+    marginBottom: "auto",
     "&:hover": {
       backgroundColor: "#354b38",
     },
@@ -143,6 +144,7 @@ const JobTile = (props) => {
             onClick={() => {
               setOpen(true);
             }}
+            style={{ marginRight: "2px" }}
             disabled={userType() === "recruiter"}
           >
             <strong>Apply</strong>
@@ -511,7 +513,6 @@ const FilterPopup = (props) => {
             <Button
               variant="contained"
               color="primary"
-              style={{ padding: "10px 50px" }}
               onClick={() => getData()}
             >
               Apply
@@ -694,6 +695,7 @@ const Home = (props) => {
           xs
           direction="column"
           alignItems="stretch"
+          style={{width:"60%"}}
           justify="center"
         >
           {jobs.length > 0 ? (

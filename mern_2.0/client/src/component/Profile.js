@@ -19,10 +19,12 @@ import FaceIcon from "@material-ui/icons/Face";
 import { SetPopupContext } from "../App";
 
 import apiList, {server} from "../lib/apiList";
+import imgProfile from "./Profile data-bro.png";
 
 const useStyles = makeStyles((theme) => ({
   body: {
     height: "inherit",
+    color:"#d2e3c8",
   },
   popupDialog: {
     height: "100%",
@@ -35,6 +37,29 @@ const useStyles = makeStyles((theme) => ({
     alignSelf:"center",
     width: theme.spacing(17),
     height: theme.spacing(17),
+  },
+  updateButton: {
+    width: "300px",
+    borderRadius: "8px",
+    height: "50px",
+    background: "#4f6f52", // Set button background color
+    color: "#ffffff", // Set button text color
+    // boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Add darker background shadow
+    "&:hover": {
+      background: "#385943", // Darker background on hover
+    },
+    padding: "10px 50px",
+     marginTop: "30px",
+  },
+  inputBox: {
+    width: "100%", // Responsive width
+    [theme.breakpoints.up("md")]: {
+      width: "600px", // Width for medium and up screens
+    },
+    '& .MuiButton-root': {
+      backgroundColor: '#4f6f52',
+      color: 'white',
+    },
   },
 }));
 
@@ -91,6 +116,7 @@ const MultifieldInput = (props) => {
         <Button
           variant="contained"
           color="secondary"
+          style={{backgroundColor: '#4f6f52'}}
           onClick={() =>
             setEducation([
               ...education,
@@ -260,24 +286,28 @@ const Profile = (props) => {
   
   return (
     <>
+
       <Grid
         container
         item
         direction="column"
         alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
+        style={{ padding: "150px", minHeight: "93vh",background:"#d2e3c8" }}
+        
       >
+
         
         <Grid item xs>
           <Paper
             style={{
-              padding: "20px",
+              padding: "30px",
               outline: "none",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
             }}
+            
           >
             <Grid
                 container direction="column" alignItems="center" 
@@ -294,7 +324,7 @@ const Profile = (props) => {
                   className={classes.avatar}
                   
                 />
-                <Typography variant="h3" component="h2" style={{color:"#3f51b5",fontWeight:"bold"}}>
+                <Typography variant="h3" component="h2" style={{color:"#4f6f52",fontWeight:"bold"}}>
                 Profile
                 </Typography>
               </Grid>
@@ -345,7 +375,8 @@ const Profile = (props) => {
               <Grid item>
                 <FileUploadInput
                   className={classes.inputBox}
-                  label="Resume (Images only)"
+                  label="Resume (.jpg/.png)"
+                  style={{background:"#4f6f52"}}
                   icon={<DescriptionIcon />}
                   uploadTo={apiList.uploadResume}
                   handleInput={handleInput}
@@ -358,7 +389,7 @@ const Profile = (props) => {
                 className={classes.statusBlock}
                 color="primary"
                 onClick={() => getResume()}
-                style={{alignItems:"center"}}
+                style={{alignItems:"center",background:"#4f6f52"}}
               >
                 View Uploaded Resume
               </Button>
@@ -377,13 +408,13 @@ const Profile = (props) => {
             </Grid>
             <Button
               variant="contained"
-              color="primary"
-              style={{ padding: "10px 50px", marginTop: "30px",borderRadius:"8px",height:"50px"}}
+              className={classes.updateButton}
               onClick={() => handleUpdate()}
             >
               Update Details
             </Button>
           </Paper>
+          
         </Grid>
       </Grid>
     </>
