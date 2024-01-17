@@ -5,11 +5,11 @@ const apiList = {
   signup: `${server}/auth/signup`,
   uploadResume: `${server}/upload/resume`,
   uploadProfileImage: `${server}/upload/profile`,
-  jobs: `${server}/jobs`,  // Updated from `${server}/`
-  applications: `${server}/applications`,  // Updated from `${server}/api/applications`
-  rating: `${server}/rating`,  // Updated from `${server}/api/rating`
+  jobs: `${server}/jobs`, 
+  applications: `${server}/applications`, 
+  rating: `${server}/rating`,  
   user: `${server}/user`,
-  applicants: `${server}/applicants`,  // Updated from `${server}/api/applicants`
+  applicants: `${server}/applicants`, 
 };
 
 export default apiList;
