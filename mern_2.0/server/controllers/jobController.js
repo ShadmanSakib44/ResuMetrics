@@ -2,31 +2,32 @@ const Job = require("../db/Job");
 const Application = require("../db/Application");
 
 const addJob = (req, res) => {
-    const user = req.user;
-    if (user.type !== "recruiter") {
-        return res.status(401).json({
-            message: "You don't have permissions to add jobs",
-        });
-    }
-
-    const data = req.body;
-    const job = new Job({
-        userId: user._id,
-        title: data.title,
-        maxApplicants: data.maxApplicants,
-        maxPositions: data.maxPositions,
-        dateOfPosting: data.dateOfPosting,
-        deadline: data.deadline,
-        skillsets: data.skillsets,
-        jobType: data.jobType,
-        duration: data.duration,
-        salary: data.salary,
-        rating: data.rating,
+  const user = req.user;
+  if (user.type !== "recruiter") {
+    return res.status(401).json({
+      message: "You don't have permissions to add jobs",
     });
+  }
 
-    job.save()
-       .then(() => res.json({ message: "Job added successfully to the database" }))
-       .catch((err) => res.status(400).json(err));
+  const data = req.body;
+  const job = new Job({
+    userId: user._id,
+    title: data.title,
+    maxApplicants: data.maxApplicants,
+    maxPositions: data.maxPositions,
+    dateOfPosting: data.dateOfPosting,
+    deadline: data.deadline,
+    skillsets: data.skillsets,
+    jobType: data.jobType,
+    duration: data.duration,
+    salary: data.salary,
+    rating: data.rating,
+  });
+
+  job
+    .save()
+    .then(() => res.json({ message: "Job added successfully to the database" }))
+    .catch((err) => res.status(400).json(err));
 };
 
 const getAllJobs = (req, res) => {
@@ -34,7 +35,6 @@ const getAllJobs = (req, res) => {
 
   let findParams = {};
   let sortParams = {};
-
 
   // to list down jobs posted by a particular recruiter
   if (user.type === "recruiter" && req.query.myjobs) {
@@ -196,26 +196,45 @@ const getAllJobs = (req, res) => {
       res.status(400).json(err);
     });
 
-
   // Logic for GET /jobs
 };
 
 const getJobById = (req, res) => {
   Job.findOne({ _id: req.params.id })
-  .then((job) => {
-    if (job == null) {
-      res.status(400).json({
-        message: "Job does not exist",
-      });
-      return;
-    }
-    res.json(job);
-  })
-  .catch((err) => {
-    res.status(400).json(err);
-  });
+    .then((job) => {
+      if (job == null) {
+        res.status(400).json({
+          message: "Job does not exist",
+        });
+        return;
+      }
+      res.json(job);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 
   // Logic for GET /jobs/:id
+};
+
+const getMetricsForJobById = (req, res) => {
+  Job.findOne({ _id: req.params.id })
+    .then((job) => {
+      if (job == null) {
+        res.status(400).json({
+          message: "Job does not exist",
+        });
+        return;
+      }
+      const metrics = {
+        activeApplications: job.activeApplications,
+        acceptedCandidates: job.acceptedCandidates,
+      };
+      res.json();
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 };
 
 const updateJob = (req, res) => {
@@ -263,12 +282,8 @@ const updateJob = (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
-
-
-
 };
-  // Logic for PUT /jobs/:id
-
+// Logic for PUT /jobs/:id
 
 const deleteJob = (req, res) => {
   const user = req.user;
@@ -305,6 +320,6 @@ module.exports = {
   getAllJobs,
   getJobById,
   updateJob,
-  deleteJob
+  deleteJob,
+  getMetricsForJobById,
 };
-
