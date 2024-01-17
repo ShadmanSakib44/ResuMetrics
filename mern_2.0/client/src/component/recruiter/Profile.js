@@ -380,7 +380,7 @@ const Profile = () => {
             }}
           />
           <PhoneInput
-            country={"in"}
+            country={"bd"}
             value={phone}
             onChange={(phone) => setPhone(phone)}
             className={classes.phoneInput}
