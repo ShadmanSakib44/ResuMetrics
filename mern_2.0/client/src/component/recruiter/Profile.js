@@ -347,12 +347,12 @@ const Profile = () => {
       item
       direction="column"
       alignItems="center"
-      style={{ padding: "30px", minHeight: "93vh", background:"#d2e3c8" }}
+      style={{ padding: "300px", minHeight: "93vh", background:"#d2e3c8" }}
     >
-      <Grid item xs={12} style={{ width: "100%" }}>
+      <Grid item xs={12} style={{ width: "50%" }}>
         <Paper className={classes.paper}>
           <Typography variant="h3" component="h2" className={classes.heading}>
-            Profile
+            Recruiter Profile
           </Typography>
           <TextField
             label="Name"

@@ -34,14 +34,15 @@ const useStyles = makeStyles((theme) => ({
     height: "inherit",
   },
   button: {
-    width: "100%",
+    width: "50%",
     height: "100%",
   },
   jobTileOuter: {
     padding: "30px",
-    margin: "20px 0",
+    margin: "20px auto",
     boxSizing: "border-box",
-    width: "100%",
+    alignItems:"center",
+    width: "60%",
   },
   popupDialog: {
     height: "100%",
@@ -153,21 +154,21 @@ const JobTile = (props) => {
       <Grid container>
         <Grid container item xs={9} spacing={1} direction="column">
           <Grid item>
-            <Typography variant="h5">{job.title}</Typography>
+            <Typography variant="h5"><strong>{job.title}</strong></Typography>
           </Grid>
           <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
-          <Grid item>Role : {job.jobType}</Grid>
-          <Grid item>Salary :&#2547; {job.salary} per month</Grid>
+          <Grid item><strong>Role :</strong> {job.jobType}</Grid>
+          <Grid item><strong>Salary :</strong> :&#2547; {job.salary} per month</Grid>
           <Grid item>
-            Duration :{" "}
+          <strong>Duration :</strong>{" "}
             {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
           </Grid>
-          <Grid item>Date Of Posting: {postedOn.toLocaleDateString()}</Grid>
-          <Grid item>Number of Applicants: {job.maxApplicants}</Grid>
+          <Grid item><strong>Date Of Posting:</strong> {postedOn.toLocaleDateString()}</Grid>
+          <Grid item><strong>Number of Applicants:</strong> {job.maxApplicants}</Grid>
           <Grid item>
-            Remaining Number of Positions:{" "}
+          <strong>Remaining Number of Positions:</strong>{" "}
             {job.maxPositions - job.acceptedCandidates}
           </Grid>
           <Grid item>
@@ -176,12 +177,13 @@ const JobTile = (props) => {
             ))}
           </Grid>
         </Grid>
-        <Grid item container direction="column" xs={3}>
-          <Grid item xs>
+        <Grid item container direction="column" xs={3} spacing={6}>
+          <Grid item>
             <Button
               variant="contained"
               color="primary"
               className={classes.statusBlock}
+              style={{background:"#4f6f52"}}
               onClick={() => handleClick(`/job/applications/${job._id}`)}
             >
               View Applications
@@ -793,7 +795,7 @@ const MyJobs = (props) => {
         item
         direction="column"
         alignItems="center"
-        style={{ padding: "30px", minHeight: "93vh" }}
+        style={{ padding: "30px", minHeight: "93vh",background:"#d2e3c8" }}
       >
         <Grid
           item
@@ -802,9 +804,29 @@ const MyJobs = (props) => {
           justify="center"
           alignItems="center"
         >
-          <Grid item xs>
-            <Typography variant="h2" style={{color:"white",fontWeight:"bold"}}>My Jobs</Typography>
-          </Grid>
+          <>
+            <Grid item style={{ marginTop: "30px", animation: "bounce 1s infinite",marginBottom:"20px" }}>
+              <Typography variant="h3" style={{ color: "#4f6f52", fontWeight: "bold" }}>
+                Your Posted Jobs
+              </Typography>
+            </Grid>
+
+            <style>
+              {`
+                @keyframes bounce {
+                  0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                  }
+                  40% {
+                    transform: translateY(-10px);
+                  }
+                  60% {
+                    transform: translateY(-10px);
+                  }
+                }
+              `}
+            </style>
+          </>
           <Grid item xs>
             <TextField
               label="Search Jobs"
@@ -844,6 +866,7 @@ const MyJobs = (props) => {
           container
           item
           xs
+          width="50%"
           direction="column"
           alignItems="stretch"
           justify="center"

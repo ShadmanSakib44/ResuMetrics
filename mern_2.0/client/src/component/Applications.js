@@ -110,11 +110,11 @@ const ApplicationTile = (props) => {
   const colorSet = {
     applied: "#3454D1",
     shortlisted: "#DC851F",
-    accepted: "#09BC8A",
+    accepted: "#ed563b",
     rejected: "#D1345B",
     deleted: "#B49A67",
-    cancelled: "#FF8484",
-    finished: "#4EA5D9",
+    cancelled: "#ab1616",
+    finished: "#0f8c12",
   };
 
   return (
@@ -124,11 +124,11 @@ const ApplicationTile = (props) => {
           <Grid item>
             <Typography variant="h5">{application.job.title}</Typography>
           </Grid>
-          <Grid item>Posted By: {application.recruiter.name}</Grid>
-          <Grid item>Role : {application.job.jobType}</Grid>
-          <Grid item>Salary : &#8377; {application.job.salary} per month</Grid>
+          <Grid item><strong>Posted By: </strong>{application.recruiter.name}</Grid>
+          <Grid item><strong>Role : </strong>{application.job.jobType}</Grid>
+          <Grid item><strong>Salary: &#2547;</strong> {application.job.salary} per month</Grid>
           <Grid item>
-            Duration :{" "}
+            <strong>Duration :{" "}</strong>
             {application.job.duration !== 0
               ? `${application.job.duration} month`
               : `Flexible`}
@@ -138,10 +138,10 @@ const ApplicationTile = (props) => {
               <Chip label={skill} style={{ marginRight: "2px" }} />
             ))}
           </Grid>
-          <Grid item>Applied On: {appliedOn.toLocaleDateString()}</Grid>
+          <Grid item><strong>Applied On: </strong>{appliedOn.toLocaleDateString()}</Grid>
           {application.status === "accepted" ||
           application.status === "finished" ? (
-            <Grid item>Joined On: {joinedOn.toLocaleDateString()}</Grid>
+            <Grid item><strong>Joined On: </strong>{joinedOn.toLocaleDateString()}</Grid>
           ) : null}
         </Grid>
         <Grid item container direction="column" xs={3}>
@@ -151,6 +151,8 @@ const ApplicationTile = (props) => {
               style={{
                 background: colorSet[application.status],
                 color: "#ffffff",
+                height:"40px",
+                borderRadius:"9px",
               }}
             >
               {application.status}
@@ -163,13 +165,22 @@ const ApplicationTile = (props) => {
                 variant="contained"
                 color="primary"
                 className={classes.statusBlock}
+                style={{
+                  background: "#739072",
+                  borderRadius: "9px", // Smoother edges
+                  height: "40px", // Smaller height
+                  fontSize: "14px", // Adjust font size
+                  padding: "8px 16px", // Adjust padding
+                  marginTop: "10px", // Add margin top for spacing
+                }}
                 onClick={() => {
                   fetchRating();
                   setOpen(true);
                 }}
               >
-                Rate Job
+                Rate your experience
               </Button>
+
             </Grid>
           ) : null}
         </Grid>
@@ -244,18 +255,38 @@ const Applications = (props) => {
       item
       direction="column"
       alignItems="center"
-      style={{ padding: "30px", minHeight: "93vh" }}
+      style={{ padding: "30px", minHeight: "93vh",background:"#d2e3c8" }}
     >
-      <Grid item>
-        <Typography variant="h2" style={{color:"white",fontWeight:"bold"}}>Applications</Typography>
-      </Grid>
+      <>
+        <Grid item style={{ marginTop: "30px", animation: "bounce 1s infinite" }}>
+          <Typography variant="h3" style={{ color: "#4f6f52", fontWeight: "bold" }}>
+            Your Applied Applications
+          </Typography>
+        </Grid>
+
+        <style>
+          {`
+            @keyframes bounce {
+              0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+              }
+              40% {
+                transform: translateY(-20px);
+              }
+              60% {
+                transform: translateY(-10px);
+              }
+            }
+          `}
+        </style>
+      </>
 
       <Grid
         container
         item
         xs
         direction="column"
-        style={{ width: "100%" }}
+        style={{ width: "60%" }}
         alignItems="stretch"
         justify="center"
       >

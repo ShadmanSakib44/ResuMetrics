@@ -323,7 +323,7 @@ const FilterPopup = (props) => {
             </Grid>
           </Grid>
 
-          <Grid item>
+          <Grid item xs={3} spacing={2}>
             <Button
               variant="contained"
               color="primary"
@@ -545,8 +545,8 @@ const ApplicationTile = (props) => {
   };
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
-      <Grid container>
+    <Paper className={classes.jobTileOuter} elevation={3} style={{background:"#d2e3c8"}}>
+      <Grid container >
         <Grid
           item
           xs={2}
@@ -741,9 +741,29 @@ const JobApplications = (props) => {
         alignItems="center"
         style={{ padding: "30px", minHeight: "93vh" }}
       >
-        <Grid item>
-          <Typography variant="h2" style={{color:"white",fontWeight:"bold"}}>Applications</Typography>
-        </Grid>
+ <>
+            <Grid item style={{ marginTop: "30px", animation: "bounce 1s infinite",marginBottom:"20px" }}>
+              <Typography variant="h3" style={{ color: "#4f6f52", fontWeight: "bold" }}>
+                Applications
+              </Typography>
+            </Grid>
+
+            <style>
+              {`
+                @keyframes bounce {
+                  0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                  }
+                  40% {
+                    transform: translateY(-10px);
+                  }
+                  60% {
+                    transform: translateY(-10px);
+                  }
+                }
+              `}
+            </style>
+          </>
         <Grid item>
           <IconButton onClick={() => setFilterOpen(true)}>
             <FilterListIcon />
