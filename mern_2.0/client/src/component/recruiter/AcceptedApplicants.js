@@ -731,6 +731,9 @@ const AcceptedApplicants = (props) => {
           direction="column"
           style={{ width: "60%" }}
           alignItems="stretch"
+
+        justifyContent="left"
+
         >
           {applications.length > 0 ? (
             applications.map((obj) => (

@@ -20,6 +20,8 @@ import EmailInput from "../lib/EmailInput";
 import FileUploadInput from "../lib/FileUploadInput";
 import { SetPopupContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import PasswordStrengthBar from 'react-password-strength-bar';
+
 
 import apiList from "../lib/apiList";
 import isAuth from "../lib/isAuth";
@@ -430,22 +432,23 @@ const Signup = (props) => {
           />
         </Grid>
         <Grid item>
-          <PasswordInput
-            label="Password"
-            value={signupDetails.password}
-            onChange={(event) => handleInput("password", event.target.value)}
-            className={classes.inputBox}
-            error={inputErrorHandler.password.error}
-            helperText={inputErrorHandler.password.message}
-            onBlur={(event) => {
-              if (event.target.value === "") {
-                handleInputError("password", true, "Password is required");
-              } else {
-                handleInputError("password", false, "");
-              }
-            }}
-          />
-        </Grid>
+  <PasswordInput
+    label="Password"
+    value={signupDetails.password}
+    onChange={(event) => handleInput("password", event.target.value)}
+    className={classes.inputBox}
+    error={inputErrorHandler.password.error}
+    helperText={inputErrorHandler.password.message}
+    onBlur={(event) => {
+      if (event.target.value === "") {
+        handleInputError("password", true, "Password is required");
+      } else {
+        handleInputError("password", false, "");
+      }
+    }}
+  />
+  <PasswordStrengthBar password={signupDetails.password} />
+</Grid>
         {signupDetails.type === "applicant" ? (
           <>
             <MultifieldInput
