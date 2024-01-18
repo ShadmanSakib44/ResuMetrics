@@ -28,6 +28,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { SetPopupContext } from "../../App";
 
 import apiList, { server } from "../../lib/apiList";
+import Footer from "../Footer";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -777,6 +778,7 @@ const JobApplications = (props) => {
           )}
         </Grid>
       </Grid>
+      <Footer/>
       <FilterPopup
         open={filterOpen}
         searchOptions={searchOptions}

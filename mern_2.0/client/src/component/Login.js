@@ -20,6 +20,7 @@ import apiList from "../lib/apiList";
 import isAuth from "../lib/isAuth";
 
 import img from './login-img.png';
+import Footer from "./Footer";
 
 const useStyles = makeStyles((theme) => ({
   body: {

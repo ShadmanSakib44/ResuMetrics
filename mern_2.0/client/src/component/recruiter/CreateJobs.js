@@ -16,6 +16,7 @@ import ChipInput from "material-ui-chip-input";
 import { SetPopupContext } from "../../App";
 
 import apiList from "../../lib/apiList";
+import Footer from "../Footer";
 
 const useStyles = makeStyles((theme) => ({
   container: { // Set grid background color
@@ -131,7 +132,7 @@ const CreateJobs = () => {
  <>
             <Grid item style={{ marginTop: "30px", animation: "bounce 1s infinite",marginBottom:"20px" }}>
               <Typography variant="h3" style={{ color: "#4f6f52", fontWeight: "bold" }}>
-              Create Job Applications
+              Create Job Opportunities
               </Typography>
             </Grid>
 
@@ -291,13 +292,14 @@ const CreateJobs = () => {
                   className={classes.submitButton}
                   onClick={() => handleUpdate()}
                 >
-                  Create job Applications
+                  Create job
                 </Button>
               </Grid>
             </Paper>
           </Grid>
         </Grid>
       </Grid>
+      <Footer/>
     </>
   );
 };
