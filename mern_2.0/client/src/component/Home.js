@@ -29,6 +29,7 @@ import { SetPopupContext } from "../App";
 
 import apiList from "../lib/apiList";
 import { userType } from "../lib/isAuth";
+import Footer from "./Footer";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -146,13 +147,6 @@ const JobTile = (props) => {
             className={classes.button}
             onClick={() => {
               setOpen(true);
-            }}
-            style={{
-              marginRight: "0px",
-              background: "#4f6f52", // Set your desired background color
-              color: "#ffffff", // Set your desired text color
-              borderRadius: "8px", // Set your desired border radius
-              fontWeight: "bold", // Set the text to be bold
             }}
             disabled={userType() === "recruiter"}
           >
@@ -660,9 +654,29 @@ const Home = (props) => {
           justify="center"
           alignItems="center"
         >
-          <Grid item xs>
-            <Typography variant="h2" style={{color:"white",fontWeight:"bold"}}>Jobs</Typography>
-          </Grid>
+ <>
+            <Grid item style={{ marginTop: "30px", animation: "bounce 1s infinite",marginBottom:"20px" }}>
+              <Typography variant="h3" style={{ color: "#4f6f52", fontWeight: "bold" }}>
+                Jobs
+              </Typography>
+            </Grid>
+
+            <style>
+              {`
+                @keyframes bounce {
+                  0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                  }
+                  40% {
+                    transform: translateY(-10px);
+                  }
+                  60% {
+                    transform: translateY(-10px);
+                  }
+                }
+              `}
+            </style>
+          </>
           <Grid item xs>
             <TextField
               label="Search Jobs"
@@ -723,6 +737,7 @@ const Home = (props) => {
           <Pagination count={10} color="primary" />
         </Grid> */}
       </Grid>
+      <Footer/>
       <FilterPopup
         open={filterOpen}
         searchOptions={searchOptions}

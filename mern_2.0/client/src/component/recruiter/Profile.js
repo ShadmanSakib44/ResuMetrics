@@ -13,6 +13,7 @@ import "react-phone-input-2/lib/material.css";
 import axios from "axios";
 import { SetPopupContext } from "../../App";
 import apiList from "../../lib/apiList";
+import Footer from "../Footer";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -137,6 +138,7 @@ const Profile = () => {
   };
 
   return (
+    <>
     <Grid
       container
       item
@@ -212,7 +214,11 @@ const Profile = () => {
           </Button>
         </Paper>
       </Grid>
+      
     </Grid>
+    <Footer/>
+    </>
+    
   );
 };
 
