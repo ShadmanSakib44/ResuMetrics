@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Grid, Typography, Button } from "@material-ui/core";
+<<<<<<< Updated upstream
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import video1 from './video1.mp4';
+=======
+>>>>>>> Stashed changes
 import { Link } from "react-router-dom";
 import "./Welcome.css"; // Import a separate CSS file for styling
 import img1 from './Job hunt-amico.png';
 import img2 from './Interview-rafiki.png';
 import ContactUs from './ContactUs';
-
 import isAuth from "../lib/isAuth";
+import video1 from './video1.mp4';
 
 const Welcome = (props) => {
   const videos = [video1];
@@ -27,6 +30,7 @@ const Welcome = (props) => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
   };
 
+<<<<<<< Updated upstream
   const scrollToAbout = () => {
     scroll.scrollTo(document.getElementById("about-section").offsetTop, {
       duration: 800,
@@ -34,6 +38,8 @@ const Welcome = (props) => {
     });
   };
 
+=======
+>>>>>>> Stashed changes
   return (
     <Grid container item direction="column" alignItems="center" justify="center">
       <div className="video-container">
@@ -123,8 +129,13 @@ const Welcome = (props) => {
                 </Link>
               </>
             )}
+<<<<<<< Updated upstream
             <div className="button-container">
         <a href="http://localhost:3001/" target="_blank" rel="noopener noreferrer">
+=======
+            <div>
+            <a href="http://localhost:3001/" target="_blank" rel="noopener noreferrer">
+>>>>>>> Stashed changes
           <Button
             variant="contained"
             color="primary"
@@ -135,6 +146,7 @@ const Welcome = (props) => {
               color: "#ffffff",
             }}
           >
+<<<<<<< Updated upstream
             Build your Resume
           </Button>
         </a>
@@ -206,6 +218,34 @@ const Welcome = (props) => {
               onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
             />
           </Grid>
+=======
+           Build Your Resume
+          </Button>
+        </a>
+
+            </div>
+                  
+          </div>
+        </div>
+      </div>
+
+      
+    <div className="about-section">
+      <Grid container item direction="row" alignItems="center" justify="center" style={{ marginTop: "30px" }}>
+        <Grid item xs={12} md={4}>
+          <img
+            src={img1}
+            alt="About Left"
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: "8px",
+              transition: "transform 0.5s",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          />
+>>>>>>> Stashed changes
         </Grid>
       </div>
       <ContactUs />
