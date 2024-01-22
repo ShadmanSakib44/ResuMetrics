@@ -20,6 +20,7 @@ import { SetPopupContext } from "../App";
 
 import apiList, {server} from "../lib/apiList";
 import imgProfile from "./Profile data-bro.png";
+import Footer from "./Footer";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -423,6 +424,7 @@ const Profile = (props) => {
           
         </Grid>
       </Grid>
+      <Footer/>
     </>
   );
 };
