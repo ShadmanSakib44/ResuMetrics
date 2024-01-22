@@ -156,9 +156,9 @@ const JobTile = (props) => {
           <Grid item>
             <Typography variant="h5"><strong>{job.title}</strong></Typography>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
-          </Grid>
+          </Grid> */}
           <Grid item><strong>Role :</strong> {job.jobType}</Grid>
           <Grid item><strong>Salary :</strong> :&#2547; {job.salary} per month</Grid>
           <Grid item>
@@ -616,7 +616,7 @@ const FilterPopup = (props) => {
                 alignItems="center"
                 style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
               >
-                <Grid item>
+                {/* <Grid item>
                   <Checkbox
                     name="rating"
                     checked={searchOptions.sort.rating.status}
@@ -634,13 +634,13 @@ const FilterPopup = (props) => {
                     }
                     id="rating"
                   />
-                </Grid>
-                <Grid item>
+                </Grid> */}
+                {/* <Grid item>
                   <label for="rating">
                     <Typography>Rating</Typography>
                   </label>
-                </Grid>
-                <Grid item>
+                </Grid> */}
+                {/* <Grid item>
                   <IconButton
                     disabled={!searchOptions.sort.rating.status}
                     onClick={() => {
@@ -662,7 +662,7 @@ const FilterPopup = (props) => {
                       <ArrowUpwardIcon />
                     )}
                   </IconButton>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Grid>
           </Grid>

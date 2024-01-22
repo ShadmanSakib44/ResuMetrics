@@ -31,8 +31,8 @@ import apiList, { server } from "../../lib/apiList";
 
 const useStyles = makeStyles((theme) => ({
   body: {
-    maxWidth: "100px", // Set to your desired maximum width
-    margin: "0 auto", // Center the content horizontally
+    maxWidth: "100px",
+    margin: "0 auto", 
   },
   statusBlock: {
     width: "100%",
@@ -271,7 +271,7 @@ const FilterPopup = (props) => {
                 alignItems="center"
                 style={{ border: "1px solid #D1D1D1", borderRadius: "5px" }}
               >
-                <Grid item>
+                {/* <Grid item>
                   <Checkbox
                     name="rating"
                     checked={searchOptions.sort["jobApplicant.rating"].status}
@@ -289,13 +289,13 @@ const FilterPopup = (props) => {
                     }
                     id="rating"
                   />
-                </Grid>
-                <Grid item>
+                </Grid> */}
+                {/* <Grid item>
                   <label for="rating">
                     <Typography>Rating</Typography>
                   </label>
-                </Grid>
-                <Grid item>
+                </Grid> */}
+                {/* <Grid item>
                   <IconButton
                     disabled={!searchOptions.sort["jobApplicant.rating"].status}
                     onClick={() => {
@@ -318,7 +318,7 @@ const FilterPopup = (props) => {
                       <ArrowUpwardIcon />
                     )}
                   </IconButton>
-                </Grid>
+                </Grid> */}
               </Grid>
             </Grid>
           </Grid>
@@ -551,7 +551,7 @@ const ApplicationTile = (props) => {
               {application.jobApplicant.name}
             </Typography>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <Rating
               value={
                 application.jobApplicant.rating !== -1
@@ -560,7 +560,7 @@ const ApplicationTile = (props) => {
               }
               readOnly
             />
-          </Grid>
+          </Grid> */}
           <Grid item>Applied On: {appliedOn.toLocaleDateString()}</Grid>
           <Grid item>
             Education:{" "}
@@ -647,10 +647,10 @@ const JobApplications = (props) => {
         status: true,
         desc: true,
       },
-      "jobApplicant.rating": {
-        status: false,
-        desc: false,
-      },
+      // "jobApplicant.rating": {
+      //   status: false,
+      //   desc: false,
+      // },
     },
   });
 

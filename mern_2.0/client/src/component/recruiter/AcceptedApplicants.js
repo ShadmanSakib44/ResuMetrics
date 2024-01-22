@@ -256,7 +256,7 @@ const FilterPopup = (props) => {
                 style={{ border: "1px solid #000", borderRadius: "5px" }}
               >
               <Grid item>
-              <Checkbox
+              {/* <Checkbox
                 name="rating"
                 checked={searchOptions.sort["jobApplicant.rating"].status}
                 onChange={(event) =>
@@ -272,14 +272,14 @@ const FilterPopup = (props) => {
                   })
                 }
                 id="rating"
-              />
+              /> */}
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <label htmlFor="rating">
                 <Typography>Rating</Typography>
               </label>
-            </Grid>
-            <Grid item>
+            </Grid> */}
+            {/* <Grid item>
               <IconButton
                 disabled={!searchOptions.sort["jobApplicant.rating"].status}
                 onClick={() => {
@@ -301,7 +301,7 @@ const FilterPopup = (props) => {
                   <ArrowUpwardIcon />
                 )}
               </IconButton>
-            </Grid>
+            </Grid> */}
               </Grid>
             </Grid>
           </Grid>
@@ -458,7 +458,7 @@ const ApplicationTile = (props) => {
               {application.jobApplicant.name}
             </Typography>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <Rating
               value={
                 application.jobApplicant.rating !== -1
@@ -467,7 +467,7 @@ const ApplicationTile = (props) => {
               }
               readOnly
             />
-          </Grid>
+          </Grid> */}
           <Grid item>Job Title: {application.job.title}</Grid>
           <Grid item>Role: {application.job.jobType}</Grid>
           <Grid item>Applied On: {appliedOn.toLocaleDateString()}</Grid>
@@ -513,7 +513,7 @@ const ApplicationTile = (props) => {
             End Job
           </Button>
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <Button
             variant="contained"
             color="primary"
@@ -529,7 +529,7 @@ const ApplicationTile = (props) => {
           >
             Rate Applicant
           </Button>
-        </Grid>
+        </Grid> */}
       </Grid>
       </Grid>
       <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
@@ -630,10 +630,10 @@ const AcceptedApplicants = (props) => {
         status: true,
         desc: true,
       },
-      "jobApplicant.rating": {
-        status: false,
-        desc: false,
-      },
+      // "jobApplicant.rating": {
+      //   status: false,
+      //   desc: false,
+      // },
     },
   });
 

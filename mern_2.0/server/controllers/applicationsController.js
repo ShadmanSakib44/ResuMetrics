@@ -245,6 +245,7 @@ const updateApplicationStatus = (req, res) => {
 
               Application.countDocuments({
                 recruiterId: user._id,
+                recruiterEmail: user.email,
                 jobId: job._id,
                 status: "accepted",
               }).then((activeApplicationCount) => {
@@ -258,7 +259,7 @@ const updateApplicationStatus = (req, res) => {
                         const emailSubject =
                           status === "accepted"
                             ? 'Job Application Status'
-                            : 'Shortlisted for Job';
+                        : 'Shortlisted for Job ';
 
                         const emailBody =
                           status === "accepted"

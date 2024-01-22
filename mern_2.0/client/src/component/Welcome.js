@@ -123,6 +123,22 @@ const Welcome = (props) => {
                 </Link>
               </>
             )}
+            <div className="button-container">
+        <a href="http://localhost:3001/" target="_blank" rel="noopener noreferrer">
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            style={{
+              marginTop: "20px",
+              background: "#4f6f52",
+              color: "#ffffff",
+            }}
+          >
+            Build your Resume
+          </Button>
+        </a>
+      </div>
 
 <div>
           <ScrollLink to="about-section" smooth={true} duration={800}>
@@ -140,7 +156,10 @@ const Welcome = (props) => {
               Learn more...
             </Typography>
           </ScrollLink>
+
           </div>
+          
+
           </div>
 
 

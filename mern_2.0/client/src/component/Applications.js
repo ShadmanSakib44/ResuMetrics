@@ -161,7 +161,7 @@ const ApplicationTile = (props) => {
           {application.status === "accepted" ||
           application.status === "finished" ? (
             <Grid item>
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 className={classes.statusBlock}
@@ -179,7 +179,7 @@ const ApplicationTile = (props) => {
                 }}
               >
                 Rate your experience
-              </Button>
+              </Button> */}
 
             </Grid>
           ) : null}
@@ -197,14 +197,14 @@ const ApplicationTile = (props) => {
             alignItems: "center",
           }}
         >
-          <Rating
+          {/* <Rating
             name="simple-controlled"
             style={{ marginBottom: "30px" }}
             value={rating === -1 ? null : rating}
             onChange={(event, newValue) => {
               setRating(newValue);
             }}
-          />
+          /> */}
           <Button
             variant="contained"
             color="primary"
